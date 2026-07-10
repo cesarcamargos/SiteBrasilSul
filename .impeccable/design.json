@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-09T00:00:00.000Z",
+  "title": "Design System: BrasilSul Tecnologia",
+  "extensions": {
+    "colorMeta": {
+      "papel": { "role": "neutral", "displayName": "Papel (Linho Claro)", "canonical": "oklch(96% 0.01 80)" },
+      "papel-alt": { "role": "neutral", "displayName": "Papel Alternado", "canonical": "oklch(93% 0.015 75)" },
+      "tinta": { "role": "neutral", "displayName": "Tinta (Preto Quente)", "canonical": "oklch(20% 0.005 80)" },
+      "tinta-suave": { "role": "neutral", "displayName": "Tinta Suave", "canonical": "oklch(42% 0.01 75)" },
+      "tinta-leve": { "role": "neutral", "displayName": "Tinta Leve", "canonical": "oklch(60% 0.015 80)" },
+      "linha": { "role": "neutral", "displayName": "Linha (Hairline)", "canonical": "oklch(87% 0.015 75)" },
+      "linha-forte": { "role": "neutral", "displayName": "Linha Forte", "canonical": "oklch(80% 0.02 80)" },
+      "bronze": { "role": "primary", "displayName": "Bronze / Latão", "canonical": "oklch(53% 0.06 65)" },
+      "bronze-escuro": { "role": "primary", "displayName": "Bronze Escuro", "canonical": "oklch(43% 0.05 62)" },
+      "preto": { "role": "neutral", "displayName": "Preto Editorial", "canonical": "oklch(14% 0.004 80)" },
+      "whatsapp": { "role": "functional", "displayName": "Verde WhatsApp", "canonical": "oklch(72% 0.19 148)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "H1 de hero. Fraunces, itálico bronze para palavra-chave." },
+      "headline": { "displayName": "Headline", "purpose": "H2 de seção." },
+      "title": { "displayName": "Title", "purpose": "H3 de item numerado, card, FAQ." },
+      "body": { "displayName": "Body", "purpose": "Parágrafos e texto corrido." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows, labels de formulário, navegação, cabeçalhos de tabela." }
+    },
+    "shadows": [
+      { "name": "flutuante", "value": "0 8px 20px rgba(0,0,0,.22)", "purpose": "Exclusivo do botão de WhatsApp fixo — única exceção ao sistema flat." }
+    ],
+    "motion": [
+      { "name": "ease-entrar", "value": "cubic-bezier(.2,.7,.2,1)", "purpose": "Easing padrão de entrada/reveal em todo o site." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "780px" },
+      { "name": "lg", "value": "920px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA principal (\"Pedir cotação\"). Fundo tinta, hover bronze, seta deslizante.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Pedir cotação →</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 10px; background: #1A1917; color: #fff; font-family: Inter, sans-serif; font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; padding: 15px 26px; border: 1px solid #1A1917; border-radius: 0; text-decoration: none; transition: background .2s, border-color .2s; } .ds-btn-primary:hover { background: #8B6F4E; border-color: #8B6F4E; } .ds-btn-primary:focus-visible { outline: 2px solid #8B6F4E; outline-offset: 3px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "CTA secundário sobre fundo claro.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">Conhecer a solução</a>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: #1A1917; font-family: Inter, sans-serif; font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; padding: 15px 26px; border: 1px solid #1A1917; border-radius: 0; text-decoration: none; transition: background .2s, color .2s, border-color .2s; } .ds-btn-outline:hover { background: #8B6F4E; color: #fff; border-color: #8B6F4E; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "field-underline",
+      "description": "Campo de formulário sem borda lateral, apenas linha inferior.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Nome</span><input class=\"ds-field-input\" type=\"text\" placeholder=\"Seu nome\" /></label>",
+      "css": ".ds-field { display: block; margin-bottom: 22px; font-family: Inter, sans-serif; } .ds-field-label { display: block; font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; color: #5C5A52; } .ds-field-input { width: 100%; padding: 13px 0; border: none; border-bottom: 1px solid #C9C1AC; border-radius: 0; font: inherit; color: #1A1917; background: transparent; transition: border-color .2s; } .ds-field-input:focus { border-color: #8B6F4E; outline: none; }"
+    },
+    {
+      "name": "Numbered List Item",
+      "kind": "custom",
+      "refersTo": "lista-numerada",
+      "description": "Componente assinatura: substitui cards com ícone. Número em Fraunces + hairline.",
+      "html": "<div class=\"ds-item-numerado\"><span class=\"ds-num\">01</span><div><h3 class=\"ds-item-title\">Microsoft 365</h3><p class=\"ds-item-text\">E-mail corporativo, Teams, SharePoint e Office completo.</p></div></div>",
+      "css": ".ds-item-numerado { display: grid; grid-template-columns: 70px 1fr; gap: 32px; padding: 38px 0; border-bottom: 1px solid #DDD7C9; align-items: start; font-family: Inter, sans-serif; } .ds-num { font-family: 'Fraunces', serif; font-size: 1.3rem; color: #C9C1AC; font-weight: 400; } .ds-item-title { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.28rem; color: #1A1917; margin: 0 0 10px; } .ds-item-text { color: #5C5A52; font-size: .96rem; margin: 0; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-principal",
+      "description": "Header sticky com blur, itens uppercase Inter, ativo sublinhado em bronze.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Home</a><a href=\"#\">Serviços</a><a href=\"#\">Contato</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 34px; } .ds-nav a { font-family: Inter, sans-serif; font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; color: #5C5A52; text-decoration: none; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; } .ds-nav a:hover { color: #1A1917; } .ds-nav a[aria-current=\"page\"] { color: #1A1917; border-bottom-color: #8B6F4E; }"
+    },
+    {
+      "name": "WhatsApp Floating Button",
+      "kind": "button",
+      "refersTo": "button-whatsapp",
+      "description": "Único componente circular e com sombra do sistema — exceção deliberada.",
+      "html": "<a class=\"ds-whats\" href=\"#\" aria-label=\"Falar no WhatsApp\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.1.2-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .8-.2 1.5Z\"/></svg></a>",
+      "css": ".ds-whats { display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: #25D366; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.22); transition: transform .2s; } .ds-whats:hover { transform: scale(1.06); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Estúdio de Arquitetura",
+    "overview": "O sistema visual da BrasilSul se comporta como o site de um escritório de arquitetura premium — Foster+Partners, David Chipperfield, Herzog & de Meuron — não como uma landing page de tecnologia. Tipografia serifada (Fraunces) para títulos, sans-serif técnica (Inter) para o corpo, paleta terrosa neutra em torno de um único acento bronze/latão, e uma malha de linhas finas de 1px organizando tudo como plantas de um projeto. O bronze aparece com moderação — eyebrows, hovers, números de destaque — nunca como cor dominante. O sistema rejeita explicitamente o vocabulário visual de SaaS genérico: nada de gradientes decorativos, cards ícone+título+texto empilhados, hero-metric templates, glassmorphism ou emblemas 'AI-powered' piscando.",
+    "keyCharacteristics": [
+      "Cantos retos em todo o sistema — nenhum border-radius em botões, cards, campos ou painéis (exceto o botão circular de WhatsApp e ícones de 4px)",
+      "Divisórias finas (1px solid var(--linha)) substituem sombra como principal ferramenta de hierarquia",
+      "Listas numeradas (01, 02, 03) em Fraunces fazem o papel que ícones fariam em um site de SaaS",
+      "Um único acento de cor (bronze) usado com extrema disciplina"
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "O bronze é o único acento cromático do sistema. Nunca introduza uma segunda cor de destaque fora do verde funcional do WhatsApp.", "section": "colors" },
+      { "name": "The Serif-Authority Rule", "body": "Fraunces é reservado para h1–h3 e números de destaque. Nunca usar Fraunces em botões, labels ou navegação — esses são sempre Inter maiúsculo.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Nenhuma sombra em botões, cards, painéis ou campos de formulário. Hierarquia vem de hairlines e blocos de cor sólida, não de elevação simulada.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do manter todos os cantos retos (border-radius: 0) — botões, cards, campos, painéis. Only exception: o botão circular de WhatsApp.",
+      "Do usar hairlines (1px solid var(--linha)) para separar e estruturar conteúdo em vez de sombra ou cor de fundo.",
+      "Do reservar o bronze (#8B6F4E) para acento único — eyebrows, hover, números, foco — nunca como cor de superfície dominante.",
+      "Do usar listas numeradas em Fraunces como substituto de ícones para estruturar seções de 'o que fazemos', passos ou comparações.",
+      "Do manter parágrafos de corpo entre 65–75ch e usar Inter para toda UI/label, Fraunces exclusivamente para títulos e números de destaque."
+    ],
+    "donts": [
+      "Don't usar gradientes decorativos em nenhum elemento — texto, fundo ou botão.",
+      "Don't empilhar cards idênticos com ícone + título + texto; use a lista numerada em vez disso.",
+      "Don't usar glassmorphism decorativo — o único backdrop-filter do sistema é o header sticky, que tem função real de legibilidade.",
+      "Don't adicionar box-shadow a botões, cards ou painéis — a única exceção documentada é o botão de WhatsApp.",
+      "Don't introduzir uma segunda cor de acento cromático além do bronze e do verde funcional do WhatsApp.",
+      "Don't usar tom de vendedor genérico de tecnologia — a voz é de especialista técnico e editorial, não de startup de SaaS."
+    ]
+  }
+}
