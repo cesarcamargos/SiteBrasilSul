@@ -1,0 +1,87 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Legacy .html routes -> clean Next.js routes
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/servicos.html"
+  to = "/servicos"
+  status = 301
+
+[[redirects]]
+  from = "/sobre.html"
+  to = "/sobre"
+  status = 301
+
+[[redirects]]
+  from = "/contato.html"
+  to = "/contato"
+  status = 301
+
+[[redirects]]
+  from = "/inteligencia-artificial.html"
+  to = "/inteligencia-artificial"
+  status = 301
+
+[[redirects]]
+  from = "/cartorios.html"
+  to = "/cartorios"
+  status = 301
+
+[[redirects]]
+  from = "/blog.html"
+  to = "/blog"
+  status = 301
+
+[[redirects]]
+  from = "/compliance.html"
+  to = "/compliance"
+  status = 301
+
+[[redirects]]
+  from = "/privacidade.html"
+  to = "/privacidade"
+  status = 301
+
+[[redirects]]
+  from = "/termos.html"
+  to = "/termos"
+  status = 301
+
+[[redirects]]
+  from = "/obrigado.html"
+  to = "/obrigado"
+  status = 301
+
+[[redirects]]
+  from = "/blog/ia-no-dia-a-dia-desafios-contratacao.html"
+  to = "/blog/ia-no-dia-a-dia-desafios-contratacao"
+  status = 301
+
+[[redirects]]
+  from = "/blog/microsoft-365-solucao-facil-pratica.html"
+  to = "/blog/microsoft-365-solucao-facil-pratica"
+  status = 301
+
+[[redirects]]
+  from = "/blog/microsoft-foundry-modelos-ia.html"
+  to = "/blog/microsoft-foundry-modelos-ia"
+  status = 301
+
+[[redirects]]
+  from = "/blog/programar-com-ia-o-que-e-o-loop.html"
+  to = "/blog/programar-com-ia-o-que-e-o-loop"
+  status = 301
+
+[[redirects]]
+  from = "/blog/provimento-213-cnj-cartorios.html"
+  to = "/blog/provimento-213-cnj-cartorios"
+  status = 301
