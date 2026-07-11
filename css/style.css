@@ -116,7 +116,16 @@ a { color: var(--tinta); text-decoration: none; }
 .link-sublinhado:hover { opacity: .6; }
 
 /* ---------- Hero editorial ---------- */
-.hero { padding: 96px 0 88px; border-bottom: 1px solid var(--linha); }
+.hero {
+  padding: 96px 0 88px;
+  border-bottom: 1px solid var(--linha);
+  background-color: var(--papel);
+  background-image:
+    linear-gradient(100deg, var(--papel) 24%, rgba(247, 244, 239, .84) 52%, rgba(247, 244, 239, .64) 100%),
+    url('https://images.unsplash.com/photo-1533541589358-4b1083f8929b?auto=format&fit=crop&w=1920&q=75');
+  background-size: cover;
+  background-position: center 65%;
+}
 .hero-topo {
   display: flex; justify-content: space-between; align-items: flex-end;
   gap: 40px; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--linha);
