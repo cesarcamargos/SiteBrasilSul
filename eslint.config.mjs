@@ -12,6 +12,14 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Legacy static site + tooling, not part of the Next.js app being linted.
+    // Legacy pages are removed page-by-page as each is ported (Phases 2-3).
+    ".claude/**",
+    "js/**",
+    "css/**",
+    "img/**",
+    "blog/**",
+    "*.html",
   ]),
 ]);
 

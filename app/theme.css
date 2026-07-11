@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/*
+  BrasilSul Tecnologia — "Instrument" design system.
+  Cool graphite neutrals + a single signal accent (vermillion).
+  Flat by default: hairlines carry hierarchy, not shadow. Sharp corners
+  everywhere except the circular WhatsApp float.
+*/
+@theme {
+  --color-grafite: #16181c;
+  --color-grafite-suave: #585b62;
+  --color-grafite-leve: #8b8e94;
+  --color-concreto: #f3f2ef;
+  --color-concreto-alt: #eae8e3;
+  --color-linha: #dbd9d4;
+  --color-linha-forte: #c3c0b8;
+  --color-sinal: #e1481d;
+  --color-sinal-escuro: #b7370f;
+  --color-preto: #0b0c0e;
+  --color-branco: #ffffff;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-escuro: #1da851;
+
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --spacing-xs: 8px;
+  --spacing-sm: 14px;
+  --spacing-md: 22px;
+  --spacing-lg: 32px;
+  --spacing-xl: 56px;
+  --spacing-xxl: 96px;
+
+  --radius-none: 0px;
+  --radius-icon: 4px;
+
+  /* Semantic z-index scale — never arbitrary 999/9999 values. */
+  --z-dropdown: 10;
+  --z-sticky: 100;
+  --z-fixed: 150;
+  --z-toast: 200;
+
+  /* Type scale — modular, ~1.25+ ratio between steps. Fluid clamp() on the
+     two display steps so headings never overflow narrow viewports. */
+  --text-micro: 0.72rem;
+  --text-mono-label: 0.78rem;
+  --text-mono-label--font-weight: 600;
+  --text-mono-label--letter-spacing: 0.08em;
+  --text-body-sm: 0.9rem;
+  --text-body: 1rem;
+  --text-body-lg: 1.15rem;
+  --text-title: 1.3rem;
+  --text-title--line-height: 1.1;
+  --text-stat: clamp(2rem, 3.6vw, 2.9rem);
+  --text-stat--font-weight: 500;
+  --text-stat--line-height: 1.1;
+  --text-subheadline: clamp(1.6rem, 2.8vw, 2.1rem);
+  --text-subheadline--line-height: 1.15;
+  --text-headline: clamp(1.9rem, 3.6vw, 2.7rem);
+  --text-headline--line-height: 1.08;
+  --text-display: clamp(2.4rem, 6vw, 4.4rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.02em;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-concreto);
+  color: var(--color-grafite);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-sinal);
+  color: var(--color-branco);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-sinal);
+  outline-offset: 3px;
+}
+
+/* Infinite logo marquee — pure CSS, runs on the compositor thread. */
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(calc(-50% - 20px));
+  }
+}
+
+.marquee-track {
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Reading-progress bar on long-form pages (blog posts). */
+@supports (animation-timeline: scroll()) {
+  .reading-progress {
+    display: block;
+    animation: reading-progress-grow linear forwards;
+    animation-timeline: scroll();
+  }
+
+  @keyframes reading-progress-grow {
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reading-progress {
+    display: none !important;
+  }
+}
