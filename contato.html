@@ -79,22 +79,23 @@
   <section class="secao">
     <div class="container contato-grid">
       <form id="formulario" class="formulario" action="https://formsubmit.co/atendimento@brasilsul.net.br" method="POST">
-        <input type="hidden" name="_subject" value="Novo pedido de cotação — site BrasilSul">
+        <input type="hidden" name="_subject" value="Novo pedido de cotacao - site BrasilSul">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="https://www.brasilsul.net.br/obrigado.html">
+        <input type="hidden" name="_blacklist" value="http://, https://, bitcoin, crypto">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
         <div class="campo-duplo">
-          <div class="campo"><label for="nome">Nome *</label><input type="text" id="nome" name="Nome" required autocomplete="name"></div>
-          <div class="campo"><label for="empresa">Empresa *</label><input type="text" id="empresa" name="Empresa" required autocomplete="organization"></div>
+          <div class="campo"><label for="nome">Nome *</label><input type="text" id="nome" name="name" required autocomplete="name"></div>
+          <div class="campo"><label for="empresa">Empresa *</label><input type="text" id="empresa" name="empresa" required autocomplete="organization"></div>
         </div>
         <div class="campo-duplo">
-          <div class="campo"><label for="email">E-mail *</label><input type="email" id="email" name="E-mail" required autocomplete="email"></div>
-          <div class="campo"><label for="telefone">Telefone / WhatsApp</label><input type="tel" id="telefone" name="Telefone" autocomplete="tel" placeholder="(48) 9 9999-9999"></div>
+          <div class="campo"><label for="email">E-mail *</label><input type="email" id="email" name="email" required autocomplete="email"></div>
+          <div class="campo"><label for="telefone">Telefone / WhatsApp</label><input type="tel" id="telefone" name="telefone" autocomplete="tel" placeholder="(48) 9 9999-9999"></div>
         </div>
         <div class="campo">
           <label for="produto">Produto ou serviço de interesse *</label>
-          <select id="produto" name="Produto de interesse" required>
+          <select id="produto" name="produto" required>
             <option value="" disabled selected>Selecione…</option>
             <option>Inteligência Artificial (Azure / GPT / Claude)</option>
             <option>Microsoft 365 / Office 365</option>
@@ -110,8 +111,8 @@
             <option>Outro</option>
           </select>
         </div>
-        <div class="campo"><label for="quantidade">Quantidade de licenças / usuários</label><input type="text" id="quantidade" name="Quantidade" placeholder="Ex.: 25 usuários"></div>
-        <div class="campo"><label for="mensagem">Detalhes do pedido *</label><textarea id="mensagem" name="Mensagem" required placeholder="Conte o que sua empresa precisa…"></textarea></div>
+        <div class="campo"><label for="quantidade">Quantidade de licenças / usuários</label><input type="text" id="quantidade" name="quantidade" placeholder="Ex.: 25 usuários"></div>
+        <div class="campo"><label for="mensagem">Detalhes do pedido *</label><textarea id="mensagem" name="message" required placeholder="Conte o que sua empresa precisa…"></textarea></div>
         <button class="botao" type="submit" style="width:100%;justify-content:center;">Enviar pedido de cotação</button>
         <p class="form-nota">Seus dados são usados apenas para responder à sua solicitação.</p>
       </form>
