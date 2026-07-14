@@ -1392,3 +1392,11 @@ body.home .nav .botao:hover {
   .foundry-topbar { grid-template-columns: 1fr auto; }
   .foundry-search { grid-column: 1 / -1; order: 3; }
 }
+
+/* Home secondary quote link */
+body.home .hero .hero-link-sec,
+body.home .hero .hero-link-sec:visited,
+body.home .hero .hero-link-sec:hover,
+body.home .hero .hero-link-sec:focus-visible {
+  color: #fff;
+}
