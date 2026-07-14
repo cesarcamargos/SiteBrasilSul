@@ -1459,3 +1459,11 @@ body.home .hero .hero-link-sec:focus-visible {
 .sobre-grid .foundry-sidebar { display: none; }
 .sobre-grid .foundry-model-grid { max-height: none; }
 .sobre-grid .foundry-main { padding: 22px; }
+
+/* Force home hero quote link contrast */
+html body.home .hero .hero-acoes .hero-link-sec,
+html body.home .hero .hero-acoes .hero-link-sec:visited,
+html body.home .hero .hero-acoes .hero-link-sec:hover,
+html body.home .hero .hero-acoes .hero-link-sec:focus-visible {
+  color: #fff !important;
+}
