@@ -1400,3 +1400,62 @@ body.home .hero .hero-link-sec:hover,
 body.home .hero .hero-link-sec:focus-visible {
   color: #fff;
 }
+
+/* Foundry model catalog from IAs.png */
+.foundry-model-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 18px;
+  max-height: 278px;
+  overflow: hidden;
+}
+.foundry-model {
+  min-width: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px 11px;
+  background: #fff;
+}
+.foundry-model:nth-child(1),
+.foundry-model:nth-child(5),
+.foundry-model:nth-child(8) {
+  border-color: rgba(0,103,184,.34);
+  background: #f5faff;
+}
+.foundry-model span {
+  display: block;
+  color: #0067b8;
+  font-size: .68rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.foundry-model strong {
+  display: block;
+  margin-top: 4px;
+  overflow: hidden;
+  color: #171717;
+  font-size: .83rem;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.foundry-model small {
+  display: block;
+  margin-top: 4px;
+  overflow: hidden;
+  color: #6e6e6e;
+  font-size: .68rem;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .foundry-model-grid { grid-template-columns: 1fr; max-height: none; }
+}
+
+/* AI page mockup catalog fit */
+.sobre-grid .foundry-body { grid-template-columns: 1fr; }
+.sobre-grid .foundry-sidebar { display: none; }
+.sobre-grid .foundry-model-grid { max-height: none; }
+.sobre-grid .foundry-main { padding: 22px; }
