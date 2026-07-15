@@ -1467,3 +1467,16 @@ html body.home .hero .hero-acoes .hero-link-sec:hover,
 html body.home .hero .hero-acoes .hero-link-sec:focus-visible {
   color: #fff !important;
 }
+
+/* Force legacy home hero quote button contrast */
+.hero .hero-acoes .botao-contorno,
+.hero .hero-acoes .botao-contorno:visited,
+.hero .hero-acoes .botao-contorno:hover,
+.hero .hero-acoes .botao-contorno:focus-visible,
+.hero .hero-acoes a[href="contato.html"],
+.hero .hero-acoes a[href="contato.html"]:visited,
+.hero .hero-acoes a[href="contato.html"]:hover,
+.hero .hero-acoes a[href="contato.html"]:focus-visible {
+  color: #fff !important;
+  border-color: rgba(255,255,255,.72) !important;
+}
