@@ -57,8 +57,8 @@ No painel do Netlify: **Site configuration → Environment variables**, escopo F
 |---|---|
 | `APPS_SCRIPT_URL` | URL `/exec` copiada no passo anterior |
 | `RASTREIO_SEGREDO` | o mesmo segredo da propriedade `SEGREDO` |
-| `URL_DESTINO` | `https://www.brasilsul.net.br/cartorios.html` |
-| `URL_HOME` | `https://www.brasilsul.net.br/` |
+| `URL_DESTINO` | `https://brasilsul.net.br/cartorios.html` (o domínio primário é o apex, sem www) |
+| `URL_HOME` | `https://brasilsul.net.br/` |
 | `CAMPANHA` | `cartorios` (opcional; padrão já é cartorios) |
 
 Depois de salvar as variáveis, faça um novo deploy (push no Git) para que a function as receba.

@@ -63,8 +63,8 @@ export default async (req) => {
     await registrar(valido ? 'clique' : 'token_invalido', tokenSeguro, req);
 
     const destino = valido
-      ? `${process.env.URL_DESTINO || 'https://www.brasilsul.net.br/cartorios.html'}?t=${bruto}`
-      : (process.env.URL_HOME || 'https://www.brasilsul.net.br/');
+      ? `${process.env.URL_DESTINO || 'https://brasilsul.net.br/cartorios.html'}?t=${bruto}`
+      : (process.env.URL_HOME || 'https://brasilsul.net.br/');
     return new Response(null, {
       status: 302,
       headers: { Location: destino, 'Cache-Control': 'no-store, max-age=0' }
@@ -74,7 +74,7 @@ export default async (req) => {
     return new Response(null, {
       status: 302,
       headers: {
-        Location: process.env.URL_HOME || 'https://www.brasilsul.net.br/',
+        Location: process.env.URL_HOME || 'https://brasilsul.net.br/',
         'Cache-Control': 'no-store, max-age=0'
       }
     });
