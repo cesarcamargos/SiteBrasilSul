@@ -50,7 +50,14 @@ export default async (req) => {
       return new Response(null, { status: 204 });
     }
 
-    const bruto = new URL(req.url).searchParams.get('token') || '';
+    // No rewrite do Netlify a function recebe a URL original (/r/{token}),
+    // sem a query acrescentada pela regra; por isso o token também é lido do caminho.
+    const u = new URL(req.url);
+    let bruto = u.searchParams.get('token') || '';
+    if (!bruto) {
+      const m = u.pathname.match(/^\/r\/([^/]+)/);
+      if (m) bruto = decodeURIComponent(m[1]);
+    }
     const valido = TOKEN_RE.test(bruto);
     const tokenSeguro = valido ? bruto : bruto.replace(/[^A-Za-z0-9]/g, '').slice(0, 32);
     await registrar(valido ? 'clique' : 'token_invalido', tokenSeguro, req);
