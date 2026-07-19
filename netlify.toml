@@ -1,0 +1,10 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Link individual de campanha: /r/{token} -> function de rastreamento
+[[redirects]]
+  from = "/r/*"
+  to = "/.netlify/functions/rastrear?token=:splat"
+  status = 200
+  force = true
