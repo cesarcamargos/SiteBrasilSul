@@ -56,19 +56,16 @@
     requestAnimationFrame(passo);
   }
 
-  /* ---- Marquee infinito de logos ---- */
-  var lista = document.querySelector('.marcas .marcas-lista');
-  if (lista) {
-    var marquee = document.createElement('div');
-    marquee.className = 'marquee';
-    var trilho = document.createElement('div');
-    trilho.className = 'marquee-trilho';
-    lista.parentNode.insertBefore(marquee, lista);
-    trilho.appendChild(lista);
-    var copia = lista.cloneNode(true);
+  /* ---- Marquee infinito de logos ----
+     A lista já vem dentro de .marquee-trilho no HTML; aqui só duplicamos
+     para o loop ficar contínuo. Com "reduzir movimento", este bloco nem roda
+     (a função retorna no topo) e a faixa fica estática, o que é aceitável. */
+  var listaBase = document.querySelector('.marquee-trilho .marcas-lista[data-clonar]');
+  if (listaBase) {
+    var copia = listaBase.cloneNode(true);
+    copia.removeAttribute('data-clonar');
     copia.setAttribute('aria-hidden', 'true');
-    trilho.appendChild(copia);
-    marquee.appendChild(trilho);
+    listaBase.parentNode.appendChild(copia);
   }
 
   /* ---- Barra de progresso de leitura ---- */

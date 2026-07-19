@@ -1,0 +1,222 @@
+================================================================================
+  RASTREAMENTO DE CAMPANHAS POR E-MAIL — BRASILSUL TECNOLOGIA
+  Infraestrutura e guia de utilizacao
+================================================================================
+
+Este documento resume como funciona o sistema de rastreamento de campanhas por
+e-mail do site brasilsul.net.br e como opera-lo no dia a dia. O manual tecnico
+completo, com todos os detalhes (formulas da planilha, campo HYPERLINK do Word,
+textos LGPD), esta em docs/RASTREAMENTO.md no repositorio do site.
+
+
+--------------------------------------------------------------------------------
+1. O QUE O SISTEMA FAZ
+--------------------------------------------------------------------------------
+
+Cada cliente da campanha recebe um link individual no e-mail:
+
+    https://www.brasilsul.net.br/r/{token}
+
+O token e um codigo aleatorio de 10 letras/numeros, sem nenhum dado pessoal.
+Quando o link e acessado, o sistema registra numa planilha Google quem clicou,
+quem realmente visitou a pagina e quem se engajou — distinguindo pessoas de
+robos (os scanners de seguranca dos provedores de e-mail, como o Safe Links
+da Microsoft, clicam em todos os links automaticamente).
+
+Fluxo completo:
+
+    E-mail do cliente
+        |
+        | clique em /r/{token}
+        v
+    Netlify (redirect do netlify.toml)
+        |
+        v
+    Function "rastrear"  ----registra "clique"---->  Apps Script -> planilha
+        |
+        | redireciona (302)
+        v
+    cartorios.html?t={token}
+        |
+        | snippet JavaScript na pagina
+        |----envia "visita" ao carregar----------->  Apps Script -> planilha
+        |----envia "engajamento" (10 s ou rolagem)->  Apps Script -> planilha
+
+Robos seguem o redirect mas em geral nao executam JavaScript: geram apenas
+"clique". Um ser humano gera tambem "visita" e, se ficar na pagina, o
+"engajamento".
+
+Privacidade: NENHUM endereco IP e coletado, em ponto algum. Registram-se
+apenas data/hora, token, evento, campanha, user-agent e referer. A politica
+de privacidade do site (privacidade.html) ja documenta esse tratamento.
+
+
+--------------------------------------------------------------------------------
+2. PECAS DA INFRAESTRUTURA
+--------------------------------------------------------------------------------
+
+No repositorio do site (deploy automatico via Git -> Netlify):
+
+  netlify.toml
+      Configuracao do Netlify. Define que /r/* e atendido pela function
+      "rastrear" e que as functions ficam em netlify/functions.
+
+  netlify/functions/rastrear.mjs
+      O "cerebro" no servidor. Recebe o clique (GET), valida o token
+      (8 a 32 letras/numeros), registra o evento no Apps Script e
+      redireciona o visitante para a pagina da campanha com ?t={token}.
+      Token invalido vira evento "token_invalido" e o visitante vai para a
+      home. Tambem recebe (POST) os eventos "visita" e "engajamento"
+      enviados pela pagina e os repassa ao Apps Script. O segredo que
+      autoriza a gravacao na planilha so existe aqui (variavel de
+      ambiente) — nunca chega ao navegador. Uma falha no registro nunca
+      impede o redirect: o cliente sempre chega a pagina.
+
+  cartorios.html (trecho final, antes de </body>)
+      Snippet JavaScript de ~20 linhas. Le o ?t= da URL e envia "visita"
+      ao carregar e "engajamento" uma unica vez apos 10 segundos ou na
+      primeira rolagem. Sem token na URL, nao faz nada.
+
+  scripts/gerar-tokens.ps1  (roda no Windows, com Excel instalado)
+      Le scripts/clientes.csv (Nome, Empresa, Email), gera um token
+      aleatorio criptografico por cliente e produz:
+        - scripts/mala-direta.xlsx ........ fonte de dados do Word
+        - scripts/clientes-para-planilha.csv ... para a planilha Google
+      Os arquivos com dados reais de clientes NAO vao para o Git
+      (estao no .gitignore).
+
+  docs/RASTREAMENTO.md
+      Manual tecnico completo de configuracao e operacao.
+
+Fora do repositorio:
+
+  Planilha Google (armazenamento e painel), com 3 abas:
+      eventos ... log bruto: cada clique/visita/engajamento, com data/hora
+      clientes .. mapa token -> cliente (colado do CSV gerado)
+      resumo .... visao por cliente: Clicou / Visitou / Engajou /
+                  1a visita / Total de visitas (formulas prontas no manual)
+
+  Apps Script (apps-script/Code.gs e a copia de referencia)
+      Script VINCULADO a planilha, publicado como App da Web. Recebe os
+      eventos da function, confere o segredo (Script Property SEGREDO) e
+      grava na aba "eventos". Segredo errado: nao grava e nao reclama.
+
+  Variaveis de ambiente no painel do Netlify (escopo Functions):
+      APPS_SCRIPT_URL ..... URL /exec do App da Web do Apps Script
+      RASTREIO_SEGREDO .... mesmo valor da Script Property SEGREDO
+      URL_DESTINO ......... pagina da campanha
+                            (https://www.brasilsul.net.br/cartorios.html)
+      URL_HOME ............ https://www.brasilsul.net.br/
+      CAMPANHA ............ (opcional) nome da campanha; sem ela, "cartorios"
+
+
+--------------------------------------------------------------------------------
+3. COMO LER OS RESULTADOS
+--------------------------------------------------------------------------------
+
+Na aba "resumo" da planilha, por cliente:
+
+  Clicou = sim, mas Visitou vazio
+      Provavelmente o scanner do provedor de e-mail. NAO conte como
+      interesse do cliente.
+
+  Visitou = sim
+      Alguem abriu a pagina num navegador de verdade. E gente.
+
+  Engajou = sim
+      Ficou ao menos 10 segundos na pagina ou rolou o conteudo.
+      E o melhor sinal de interesse — priorize esses no follow-up.
+
+  Evento "token_invalido" na aba eventos
+      Link chegou quebrado (truncado pelo cliente de e-mail) ou alguem
+      tentou adivinhar URLs. Nao esta ligado a nenhum cliente.
+
+
+--------------------------------------------------------------------------------
+4. COMO UTILIZAR
+--------------------------------------------------------------------------------
+
+CONFIGURACAO INICIAL (uma unica vez) — detalhes em docs/RASTREAMENTO.md:
+
+  1. Criar a planilha Google com as abas eventos, clientes e resumo
+     (cabecalhos e formulas prontos no manual).
+  2. Na planilha: Extensoes -> Apps Script -> colar apps-script/Code.gs.
+     Definir a Script Property SEGREDO com um valor forte (32+ caracteres).
+     Implantar -> App da Web -> Executar como: eu / Acesso: qualquer pessoa.
+     Copiar a URL /exec.
+     (Sempre que editar o codigo depois: reimplantar como "Nova versao".)
+  3. No Netlify, cadastrar as variaveis de ambiente da secao 2.
+  4. Fazer push do repositorio — o deploy publica a function e o redirect.
+
+ROTINA DE CADA CAMPANHA:
+
+  1. Em scripts\, copiar clientes.exemplo.csv para clientes.csv e
+     preencher (Nome, Empresa, Email).
+  2. Rodar no Windows:
+         powershell -ExecutionPolicy Bypass -File .\scripts\gerar-tokens.ps1
+  3. Colar o conteudo de clientes-para-planilha.csv na aba "clientes"
+     da planilha Google.
+  4. No Word: Correspondencias -> Mala Direta -> Mensagens de E-mail,
+     usando mala-direta.xlsx como fonte de dados. O link individual entra
+     como campo { HYPERLINK { MERGEFIELD Link } } — siga o passo a passo
+     do manual, que explica tambem o problema conhecido do Word congelar
+     o link no primeiro registro e como evitar.
+  5. Incluir no rodape do e-mail a linha de descadastro (texto pronto no
+     manual). Quem pedir descadastro sai do clientes.csv.
+  6. Enviar primeiro um teste para voce mesmo; depois, Concluir e
+     Mesclar -> Enviar Mensagens de E-mail (formato HTML), com o Outlook
+     classico aberto.
+  7. Acompanhar os resultados na aba "resumo" da planilha.
+
+CAMPANHA NOVA (outra pagina, outro publico):
+
+  1. Trocar URL_DESTINO (e a variavel opcional CAMPANHA) no Netlify.
+  2. Ajustar a variavel $campanha no topo de gerar-tokens.ps1.
+  3. Se a pagina de destino for outra, copiar para ela o snippet que esta
+     no final de cartorios.html (antes de </body>).
+  4. Gerar novos tokens e enviar. Nada mais muda — a mesma planilha serve
+     para todas as campanhas (a coluna Campanha separa uma da outra).
+
+
+--------------------------------------------------------------------------------
+5. TESTE RAPIDO E PROBLEMAS COMUNS
+--------------------------------------------------------------------------------
+
+Teste apos configurar (ou quando desconfiar de algo):
+
+  curl -sI "https://www.brasilsul.net.br/r/TESTE12345"
+      Esperado: HTTP 302, Location .../cartorios.html?t=TESTE12345,
+      Cache-Control: no-store. Deve surgir uma linha "clique" na aba
+      eventos.
+
+  curl -sI "https://www.brasilsul.net.br/r/x"
+      Esperado: 302 para a home + linha "token_invalido".
+
+  Abrir https://www.brasilsul.net.br/r/TESTE12345 no navegador e rolar a
+  pagina: devem surgir "visita" e "engajamento" na aba eventos.
+
+Problemas comuns:
+
+  Nada aparece na planilha
+      Conferir as variaveis de ambiente no Netlify (principalmente
+      APPS_SCRIPT_URL e RASTREIO_SEGREDO) e se o valor de
+      RASTREIO_SEGREDO e IDENTICO ao da Script Property SEGREDO.
+      Conferir tambem se o Apps Script foi reimplantado como "Nova
+      versao" apos a ultima edicao — sem isso a URL /exec continua
+      servindo o codigo antigo. Os logs da function ficam no painel do
+      Netlify (Logs -> Functions).
+
+  So aparecem cliques, nunca visitas
+      O snippet nao esta na pagina de destino ou o link foi enviado sem
+      token. Conferir se o e-mail usa o link /r/{token} e se o snippet
+      esta no final da pagina.
+
+  Todos os e-mails sairam com o mesmo link
+      Campo HYPERLINK congelado no Word. Ver a solucao no item "Mala
+      direta" do docs/RASTREAMENTO.md (atualizar o campo com F9 antes de
+      mesclar e conferir com Visualizar Resultados).
+
+================================================================================
+  Duvidas tecnicas: docs/RASTREAMENTO.md e os comentarios no proprio
+  codigo (netlify/functions/rastrear.mjs e apps-script/Code.gs).
+================================================================================

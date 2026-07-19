@@ -1,4 +1,7 @@
 .claude/
+.agents/
+.codex/
 scripts/clientes.csv
 scripts/clientes-para-planilha.csv
 scripts/mala-direta.xlsx
+teste.json
