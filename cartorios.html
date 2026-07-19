@@ -253,5 +253,21 @@
 </a>
 
 <script defer src="js/anim.js"></script>
+<script>
+(function () {
+  var t = new URLSearchParams(location.search).get('t');
+  if (!t || !/^[A-Za-z0-9]{8,32}$/.test(t)) return;
+  function enviar(evento) {
+    var dados = JSON.stringify({ token: t, evento: evento });
+    if (navigator.sendBeacon && navigator.sendBeacon('/.netlify/functions/rastrear', dados)) return;
+    fetch('/.netlify/functions/rastrear', { method: 'POST', body: dados, keepalive: true, mode: 'no-cors' }).catch(function () {});
+  }
+  enviar('visita');
+  var feito = false;
+  function engajar() { if (feito) return; feito = true; enviar('engajamento'); }
+  setTimeout(engajar, 10000);
+  addEventListener('scroll', engajar, { once: true, passive: true });
+})();
+</script>
 </body>
 </html>
