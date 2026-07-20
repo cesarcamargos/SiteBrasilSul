@@ -44,7 +44,10 @@ Fluxo completo:
 
 Robos seguem o redirect mas em geral nao executam JavaScript: geram apenas
 "clique". Um ser humano gera tambem "visita" e, se ficar na pagina, o
-"engajamento".
+"engajamento". O snippet tambem registra "cta" (clique em botao marcado
+com data-cta, ex. o WhatsApp flutuante) e "tempo_pagina" (segundos totais
+na pagina, enviado ao sair ou trocar de aba) — ambos gravam um detalhe
+extra na coluna Detalhe da aba eventos.
 
 Privacidade: NENHUM endereco IP e coletado, em ponto algum. Registram-se
 apenas data/hora, token, evento, campanha, user-agent e referer. A politica

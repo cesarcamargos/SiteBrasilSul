@@ -6,7 +6,7 @@
 
 const TOKEN_RE = /^[A-Za-z0-9]{8,32}$/;
 
-async function registrar(evento, token, req) {
+async function registrar(evento, token, req, detalhe) {
   const url = process.env.APPS_SCRIPT_URL;
   const segredo = process.env.RASTREIO_SEGREDO;
   if (!url || !segredo) {
@@ -23,6 +23,7 @@ async function registrar(evento, token, req) {
         segredo,
         token,
         evento,
+        detalhe: detalhe || '',
         campanha: process.env.CAMPANHA || 'cartorios',
         ts: new Date().toISOString(),
         userAgent: req.headers.get('user-agent') || '',
@@ -44,8 +45,10 @@ export default async (req) => {
       try { corpo = await req.json(); } catch {}
       const token = String(corpo.token || '');
       const evento = String(corpo.evento || '');
-      if (TOKEN_RE.test(token) && (evento === 'visita' || evento === 'engajamento')) {
-        await registrar(evento, token, req);
+      const permitidos = ['visita', 'engajamento', 'cta', 'tempo_pagina'];
+      if (TOKEN_RE.test(token) && permitidos.includes(evento)) {
+        const detalhe = typeof corpo.detalhe === 'string' ? corpo.detalhe.slice(0, 100) : '';
+        await registrar(evento, token, req, detalhe);
       }
       return new Response(null, { status: 204 });
     }

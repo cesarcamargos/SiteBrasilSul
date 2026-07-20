@@ -1,12 +1,12 @@
 # Rastreamento de campanha por e-mail — Manual de operação
 
-Sistema para identificar, por cliente, quem **clicou** no link do e-mail (pode ser robô/scanner), quem **visitou de verdade** a página (executou JavaScript) e quem **engajou** (10 s de leitura ou rolagem). Sem plataforma de e-mail marketing e sem banco de dados: a planilha Google é o armazenamento e o painel.
+Sistema para identificar, por cliente, quem **clicou** no link do e-mail (pode ser robô/scanner), quem **visitou de verdade** a página (executou JavaScript), quem **engajou** (10 s de leitura ou rolagem), além de **cliques em CTAs** específicos (ex.: botão do WhatsApp) e o **tempo total** que ficou na página. Sem plataforma de e-mail marketing e sem banco de dados: a planilha Google é o armazenamento e o painel.
 
 ## Como funciona
 
 1. O e-mail leva um link individual: `https://brasilsul.net.br/r/{token}`.
 2. O Netlify encaminha `/r/{token}` para a function `rastrear` (`netlify/functions/rastrear.mjs`), que registra o evento **clique** na planilha (via Apps Script) e redireciona (302, sem cache) para a página de destino com `?t={token}`.
-3. Na página, um snippet JS (final de `cartorios.html`) envia **visita** ao carregar e **engajamento** após 10 s ou primeira rolagem. Scanners antispam (ex.: Safe Links do Defender) seguem o link mas não executam JavaScript — geram só "clique", nunca "visita". É assim que o sistema separa robô de humano.
+3. Na página, um snippet JS (final de `cartorios.html`) envia **visita** ao carregar e **engajamento** após 10 s ou primeira rolagem. Scanners antispam (ex.: Safe Links do Defender) seguem o link mas não executam JavaScript — geram só "clique", nunca "visita". É assim que o sistema separa robô de humano. O mesmo snippet também envia **cta** (qualquer clique num elemento com `data-cta="id"`, ex. o botão flutuante do WhatsApp) e **tempo_pagina** (segundos totais na página, enviado ao sair ou trocar de aba).
 4. O Apps Script (`apps-script/Code.gs`) valida o segredo compartilhado e grava tudo na aba `eventos`. A aba `resumo` cruza com a aba `clientes`.
 
 Nenhum IP é armazenado em etapa alguma.
@@ -17,7 +17,9 @@ Nenhum IP é armazenado em etapa alguma.
 
 Crie uma planilha (ex.: "Rastreamento Campanhas BrasilSul") com 3 abas:
 
-**`eventos`** — cabeçalho na linha 1: `Data/Hora | Token | Evento | Campanha | User-Agent | Referer` (colunas A–F). O Apps Script grava aqui; não edite manualmente.
+**`eventos`** — cabeçalho na linha 1: `Data/Hora | Token | Evento | Campanha | User-Agent | Referer | Detalhe` (colunas A–G). O Apps Script grava aqui; não edite manualmente. A coluna **Detalhe** só é usada em dois eventos: `cta` (guarda o id do botão, ex. `whatsapp-flutuante`) e `tempo_pagina` (guarda os segundos de permanência); nos demais eventos fica vazia.
+
+> Planilha criada antes desta atualização? Só adicione o cabeçalho `Detalhe` na coluna G da aba `eventos` — não precisa recriar nada.
 
 **`clientes`** — cabeçalho: `Nome | Empresa | Email | Campanha | Token | Link` (A–F). Preenchida colando o conteúdo de `scripts/clientes-para-planilha.csv` (passo "Por campanha" abaixo).
 
@@ -100,6 +102,8 @@ Abra a aba `resumo` da planilha. Leitura:
 - **Clicou = sim, Visitou = —**: provavelmente scanner antispam (Safe Links), ou pessoa que abriu e fechou antes do JS rodar.
 - **Visitou = sim**: pessoa real abriu a página.
 - **Engajou = sim**: permaneceu 10 s ou rolou a página.
+- Aba `eventos`, evento `cta`: cliques em botões rastreados (coluna Detalhe = id do botão) — sinal forte de interesse.
+- Aba `eventos`, evento `tempo_pagina`: segundos que a pessoa ficou na página (coluna Detalhe); útil para comparar engajamento entre clientes.
 
 ## Campanhas futuras
 

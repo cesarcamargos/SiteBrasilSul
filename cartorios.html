@@ -248,7 +248,7 @@
   </div>
 </footer>
 
-<a class="whats-flutuante" href="https://wa.me/5548998527340?text=Ol%C3%A1!%20Gostaria%20de%20uma%20cota%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+<a class="whats-flutuante" href="https://wa.me/5548998527340?text=Ol%C3%A1!%20Gostaria%20de%20uma%20cota%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar no WhatsApp" data-cta="whatsapp-flutuante">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.1.2-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .8-.2 1.5Z"/></svg>
 </a>
 
@@ -257,8 +257,8 @@
 (function () {
   var t = new URLSearchParams(location.search).get('t');
   if (!t || !/^[A-Za-z0-9]{8,32}$/.test(t)) return;
-  function enviar(evento) {
-    var dados = JSON.stringify({ token: t, evento: evento });
+  function enviar(evento, detalhe) {
+    var dados = JSON.stringify({ token: t, evento: evento, detalhe: detalhe || '' });
     if (navigator.sendBeacon && navigator.sendBeacon('/.netlify/functions/rastrear', dados)) return;
     fetch('/.netlify/functions/rastrear', { method: 'POST', body: dados, keepalive: true, mode: 'no-cors' }).catch(function () {});
   }
@@ -267,6 +267,23 @@
   function engajar() { if (feito) return; feito = true; enviar('engajamento'); }
   setTimeout(engajar, 10000);
   addEventListener('scroll', engajar, { once: true, passive: true });
+
+  document.addEventListener('click', function (ev) {
+    var alvo = ev.target.closest('[data-cta]');
+    if (alvo) enviar('cta', alvo.getAttribute('data-cta'));
+  });
+
+  var inicio = Date.now();
+  var tempoEnviado = false;
+  function enviarTempo() {
+    if (tempoEnviado) return;
+    tempoEnviado = true;
+    enviar('tempo_pagina', String(Math.round((Date.now() - inicio) / 1000)));
+  }
+  addEventListener('pagehide', enviarTempo);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) enviarTempo();
+  });
 })();
 </script>
 </body>
