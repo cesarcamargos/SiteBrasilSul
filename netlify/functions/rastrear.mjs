@@ -4,7 +4,7 @@
 // Stateless: não conhece os clientes; o cruzamento token -> cliente é feito na planilha.
 // Nunca armazena IP. Falha no registro nunca bloqueia o redirect.
 
-const TOKEN_RE = /^[A-Za-z0-9]{8,32}$/;
+const TOKEN_RE = /^[A-Za-z0-9-]{3,40}$/;
 
 async function registrar(evento, token, req, detalhe) {
   const url = process.env.APPS_SCRIPT_URL;
@@ -62,7 +62,7 @@ export default async (req) => {
       if (m) bruto = decodeURIComponent(m[1]);
     }
     const valido = TOKEN_RE.test(bruto);
-    const tokenSeguro = valido ? bruto : bruto.replace(/[^A-Za-z0-9]/g, '').slice(0, 32);
+    const tokenSeguro = valido ? bruto : bruto.replace(/[^A-Za-z0-9-]/g, '').slice(0, 40);
     await registrar(valido ? 'clique' : 'token_invalido', tokenSeguro, req);
 
     const destino = valido
