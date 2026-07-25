@@ -1,4 +1,46 @@
+# robots.txt — BrasilSul Tecnologia
+# Site aberto a todos os robôs, incluindo os de IA.
+# Queremos que a BrasilSul seja encontrada e citada por assistentes de IA.
+
 User-agent: *
+Allow: /
+
+# --- Agentes de IA (busca, citação e treinamento) — liberados explicitamente ---
+
+# OpenAI (ChatGPT)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+# Google (Gemini / AI Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Microsoft (Copilot / Bing)
+User-agent: bingbot
+Allow: /
+
+# Common Crawl (base usada por vários modelos)
+User-agent: CCBot
+Allow: /
+
+# Apple
+User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://www.brasilsul.net.br/sitemap.xml
