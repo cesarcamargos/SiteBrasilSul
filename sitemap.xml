@@ -5,6 +5,9 @@
   <url><loc>https://www.brasilsul.net.br/servicos.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.brasilsul.net.br/cartorios.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.brasilsul.net.br/blog.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.brasilsul.net.br/blog/copilot-microsoft-365-ia-no-office.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.brasilsul.net.br/blog/ransomware-backup-regra-3-2-1.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.brasilsul.net.br/blog/lgpd-e-ia-protecao-de-dados.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.brasilsul.net.br/blog/ia-no-dia-a-dia-desafios-contratacao.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.brasilsul.net.br/blog/microsoft-foundry-modelos-ia.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
   <url><loc>https://www.brasilsul.net.br/blog/programar-com-ia-o-que-e-o-loop.html</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
