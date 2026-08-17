@@ -3,7 +3,7 @@
  * Cópia de referência: este código deve ser colado no editor do Apps Script
  * da planilha Google (Extensões > Apps Script). Veja docs/RASTREAMENTO.md.
  *
- * Recebe POSTs da Netlify Function "rastrear" e grava na aba "eventos".
+ * Recebe POSTs da Azure Function "rastrear" e grava na aba "eventos".
  * O segredo compartilhado fica em Propriedades do Script (chave SEGREDO),
  * nunca no código.
  *

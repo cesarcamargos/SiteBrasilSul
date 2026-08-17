@@ -29,7 +29,7 @@ Fluxo completo:
         |
         | clique em /r/{token}
         v
-    Netlify (redirect do netlify.toml)
+    Azure Static Web Apps (rewrite do staticwebapp.config.json)
         |
         v
     Function "rastrear"  ----registra "clique"---->  Apps Script -> planilha
@@ -58,22 +58,26 @@ de privacidade do site (privacidade.html) ja documenta esse tratamento.
 2. PECAS DA INFRAESTRUTURA
 --------------------------------------------------------------------------------
 
-No repositorio do site (deploy automatico via Git -> Netlify):
+No repositorio do site (deploy automatico via Git -> Azure Static Web Apps,
+GitHub Actions em .github/workflows/azure-static-web-apps.yml):
 
-  netlify.toml
-      Configuracao do Netlify. Define que /r/* e atendido pela function
-      "rastrear" e que as functions ficam em netlify/functions.
+  staticwebapp.config.json
+      Configuracao do Azure Static Web Apps. Define que /r/* e reescrito
+      para a function "rastrear" (publicada em /api/rastrear).
 
-  netlify/functions/rastrear.mjs
+  api/src/functions/rastrear.js
       O "cerebro" no servidor. Recebe o clique (GET), valida o token
-      (8 a 32 letras/numeros), registra o evento no Apps Script e
+      (3 a 40 letras/numeros/hifen), registra o evento no Apps Script e
       redireciona o visitante para a pagina da campanha com ?t={token}.
       Token invalido vira evento "token_invalido" e o visitante vai para a
-      home. Tambem recebe (POST) os eventos "visita" e "engajamento"
-      enviados pela pagina e os repassa ao Apps Script. O segredo que
-      autoriza a gravacao na planilha so existe aqui (variavel de
-      ambiente) — nunca chega ao navegador. Uma falha no registro nunca
-      impede o redirect: o cliente sempre chega a pagina.
+      home. Tambem recebe (POST, em /api/rastrear) os eventos "visita" e
+      "engajamento" enviados pela pagina e os repassa ao Apps Script. O
+      segredo que autoriza a gravacao na planilha so existe aqui (variavel
+      de ambiente da Static Web App) — nunca chega ao navegador. Uma falha
+      no registro nunca impede o redirect: o cliente sempre chega a pagina.
+      No rewrite do Azure (assim como acontecia no Netlify), a function
+      recebe a URL original de /r/{token} pelo cabecalho x-ms-original-url;
+      por isso o token tambem e lido do caminho, nao so da query string.
 
   cartorios.html (trecho final, antes de </body>)
       Snippet JavaScript de ~20 linhas. Le o ?t= da URL e envia "visita"
@@ -104,7 +108,7 @@ Fora do repositorio:
       eventos da function, confere o segredo (Script Property SEGREDO) e
       grava na aba "eventos". Segredo errado: nao grava e nao reclama.
 
-  Variaveis de ambiente no painel do Netlify (escopo Functions):
+  Variaveis de ambiente no painel do Azure (Static Web App -> Configuracao):
       APPS_SCRIPT_URL ..... URL /exec do App da Web do Apps Script
       RASTREIO_SEGREDO .... mesmo valor da Script Property SEGREDO
       URL_DESTINO ......... pagina da campanha
@@ -148,7 +152,8 @@ CONFIGURACAO INICIAL (uma unica vez) — detalhes em docs/RASTREAMENTO.md:
      Implantar -> App da Web -> Executar como: eu / Acesso: qualquer pessoa.
      Copiar a URL /exec.
      (Sempre que editar o codigo depois: reimplantar como "Nova versao".)
-  3. No Netlify, cadastrar as variaveis de ambiente da secao 2.
+  3. No Azure (Static Web App -> Configuracao), cadastrar as variaveis de
+     ambiente da secao 2.
   4. Fazer push do repositorio — o deploy publica a function e o redirect.
 
 ROTINA DE CADA CAMPANHA:
@@ -173,7 +178,7 @@ ROTINA DE CADA CAMPANHA:
 
 CAMPANHA NOVA (outra pagina, outro publico):
 
-  1. Trocar URL_DESTINO (e a variavel opcional CAMPANHA) no Netlify.
+  1. Trocar URL_DESTINO (e a variavel opcional CAMPANHA) no Azure.
   2. Ajustar a variavel $campanha no topo de gerar-tokens.ps1.
   3. Se a pagina de destino for outra, copiar para ela o snippet que esta
      no final de cartorios.html (antes de </body>).
@@ -201,13 +206,15 @@ Teste apos configurar (ou quando desconfiar de algo):
 Problemas comuns:
 
   Nada aparece na planilha
-      Conferir as variaveis de ambiente no Netlify (principalmente
+      Conferir as variaveis de ambiente no Azure (principalmente
       APPS_SCRIPT_URL e RASTREIO_SEGREDO) e se o valor de
       RASTREIO_SEGREDO e IDENTICO ao da Script Property SEGREDO.
       Conferir tambem se o Apps Script foi reimplantado como "Nova
       versao" apos a ultima edicao — sem isso a URL /exec continua
-      servindo o codigo antigo. Os logs da function ficam no painel do
-      Netlify (Logs -> Functions).
+      servindo o codigo antigo. Os logs da function ficam no Azure
+      Portal (Static Web App -> Functions -> Monitor / Application
+      Insights, se configurado) ou em "az staticwebapp functions"/
+      "func azure staticwebapp fetch-app-settings" via CLI.
 
   So aparecem cliques, nunca visitas
       O snippet nao esta na pagina de destino ou o link foi enviado sem
@@ -221,5 +228,5 @@ Problemas comuns:
 
 ================================================================================
   Duvidas tecnicas: docs/RASTREAMENTO.md e os comentarios no proprio
-  codigo (netlify/functions/rastrear.mjs e apps-script/Code.gs).
+  codigo (api/src/functions/rastrear.js e apps-script/Code.gs).
 ================================================================================

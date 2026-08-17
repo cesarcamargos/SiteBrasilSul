@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {
+      "route": "/r/*",
+      "rewrite": "/api/rastrear"
+    }
+  ]
+}

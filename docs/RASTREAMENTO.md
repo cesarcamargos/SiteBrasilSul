@@ -5,7 +5,7 @@ Sistema para identificar, por cliente, quem **clicou** no link do e-mail (pode s
 ## Como funciona
 
 1. O e-mail leva um link individual: `https://brasilsul.net.br/r/{token}`.
-2. O Netlify encaminha `/r/{token}` para a function `rastrear` (`netlify/functions/rastrear.mjs`), que registra o evento **clique** na planilha (via Apps Script) e redireciona (302, sem cache) para a página de destino com `?t={token}`.
+2. O Azure Static Web Apps reescreve `/r/{token}` para a function `rastrear` (`api/src/functions/rastrear.js`), que registra o evento **clique** na planilha (via Apps Script) e redireciona (302, sem cache) para a página de destino com `?t={token}`.
 3. Na página, um snippet JS (final de `cartorios.html`) envia **visita** ao carregar e **engajamento** após 10 s ou primeira rolagem. Scanners antispam (ex.: Safe Links do Defender) seguem o link mas não executam JavaScript — geram só "clique", nunca "visita". É assim que o sistema separa robô de humano. O mesmo snippet também envia **cta** (qualquer clique num elemento com `data-cta="id"`, ex. o botão flutuante do WhatsApp) e **tempo_pagina** (segundos totais na página, enviado ao sair ou trocar de aba).
 4. O Apps Script (`apps-script/Code.gs`) valida o segredo compartilhado e grava tudo na aba `eventos`. A aba `resumo` cruza com a aba `clientes`.
 
@@ -51,9 +51,9 @@ Lembrete: "Clicou = sim" sozinho pode ser um scanner. Humano de verdade é "Visi
 
 Se editar o código depois, faça **Implantar → Gerenciar implantações → editar → Nova versão** (só salvar não atualiza a URL publicada).
 
-### 3. Netlify (variáveis de ambiente)
+### 3. Azure (variáveis de ambiente)
 
-No painel do Netlify: **Site configuration → Environment variables**, escopo Functions (ou todos):
+No portal do Azure: **Static Web App → Configuração → Application settings** (ou via CLI: `az staticwebapp appsettings set`):
 
 | Variável | Valor |
 |---|---|
@@ -63,7 +63,7 @@ No painel do Netlify: **Site configuration → Environment variables**, escopo F
 | `URL_HOME` | `https://brasilsul.net.br/` |
 | `CAMPANHA` | `cartorios` (opcional; padrão já é cartorios) |
 
-Depois de salvar as variáveis, faça um novo deploy (push no Git) para que a function as receba.
+As variáveis entram em vigor no próximo deploy da function (não precisa refazer o build do site inteiro).
 
 ### 4. Teste ponta a ponta
 
@@ -111,13 +111,13 @@ Sem retrabalho de código:
 
 1. Novo `clientes.csv` → `gerar-tokens.ps1 -Campanha nome-da-nova-campanha`.
 2. Cole o novo CSV na aba `clientes` (abaixo dos existentes; o campo Campanha distingue os disparos).
-3. Se a página de destino mudar, atualize `URL_DESTINO` e `CAMPANHA` no Netlify (e adicione o snippet JS do fim de `cartorios.html` à nova página) e redeploy.
+3. Se a página de destino mudar, atualize `URL_DESTINO` e `CAMPANHA` no Azure (e adicione o snippet JS do fim de `cartorios.html` à nova página) e redeploy.
 
 ## Segurança e LGPD — resumo
 
 - Token aleatório criptográfico, sem dado pessoal ou sequência na URL.
-- Segredo compartilhado só em variável de ambiente (Netlify) e Propriedade do Script (Google); nada no código.
+- Segredo compartilhado só em variável de ambiente (Azure Static Web App) e Propriedade do Script (Google); nada no código.
 - Function valida formato do token; token inválido vira `token_invalido` e o visitante é redirecionado à home sem ver erro; falha de registro nunca bloqueia o redirect.
 - IP não é armazenado; user-agent e referer são truncados.
 - Política de Privacidade (`privacidade.html`) já menciona os links medidos em e-mails; o rodapé do e-mail oferece descadastro.
-- Erros só aparecem no log da function (painel Netlify → Logs → Functions).
+- Erros só aparecem no log da function (Azure Portal → Static Web App → Functions → Monitor).
