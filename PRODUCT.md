@@ -26,14 +26,14 @@ Confiável, técnica, local. Fala como especialista que entende do assunto, não
 
 ## Anti-references
 
-Evitar o visual típico de SaaS genérico: gradientes decorativos, cards ícone+título+texto repetidos em série, hero-metric templates, glassmorphism decorativo, badges "AI-powered" piscando. A identidade editorial/serifada atual (tipografia Fraunces + Inter, paleta terrosa neutra, linhas finas, referências como Foster+Partners e David Chipperfield) é o caminho certo e deve ser preservada e aprofundada, não substituída.
+A identidade visual oficial está documentada em DesignSystemsBrasilSul.md: Space Grotesk e Manrope, base clara, azul de ação, superfícies brancas e hierarquia objetiva. Evitar excesso de elementos decorativos, glassmorphism e badges "AI-powered" piscando.
 
 ## Design Principles
 
 - Confiança antes de conversão: cada seção reforça credibilidade (parcerias oficiais, números, 25 anos) antes de pedir uma ação.
 - Fala de especialista, não de vendedor: copy direta, sem hype, sem jargão de marketing de tecnologia.
 - Um caminho claro até a cotação: toda página relevante conduz a "Pedir cotação" ou WhatsApp, sem distrair com CTAs concorrentes.
-- Editorial, não SaaS: tipografia serifada, paleta terrosa, linhas finas e espaço em branco carregam a marca — não ícones, cards e gradientes.
+- Editorial e técnico: tipografia Space Grotesk/Manrope, fundo claro, azul de ação, superfícies brancas e espaço em branco carregam a marca — sem excesso de elementos decorativos.
 - Local e legível: suporte em português e nota fiscal brasileira são diferenciais reais, não devem virar apenas selos decorativos — devem estar no texto e na estrutura da página.
 
 ## Accessibility & Inclusion

@@ -1,6 +1,5 @@
 /* ============================================================
-   BrasilSul Tecnologia — v4 "Estúdio"
-   Editorial · Serifado · Paleta terrosa neutra · Linhas finas
+   BrasilSul Tecnologia — sistema visual\r\n   Layout editorial técnico · Space Grotesk + Manrope · Azul de ação
    Referências: Foster+Partners, David Chipperfield, Herzog & de Meuron
    ============================================================ */
 :root {
@@ -556,7 +555,7 @@ html.anima .passo .num { transition: color .4s; }
 
 /* ============================================================
    Home v5 — Hero imersivo escuro (repaginação inspirada em ref.)
-   Mantém Fraunces+Inter, bronze e cantos retos; muda o "clima" do
+   Usa o sistema visual oficial; muda o "clima" do
    topo para escuro/fotográfico, com mockup emoldurado e carrossel.
    ============================================================ */
 
@@ -1682,4 +1681,161 @@ body.servico-detalhe .rodape .logo img { filter: brightness(0) invert(1) opacity
   .scope-row span { border-top: 1px solid var(--linha); border-left: 0; }
   .service-source { grid-template-columns: 1fr auto; gap: 6px 18px; }
   .service-source span { grid-column: 1 / -1; grid-row: 2; }
+}
+
+/* ============================================================
+   Design System BrasilSul — páginas de serviços
+   ============================================================ */
+:root {
+  --ds-bg: #f7f8fb;
+  --ds-surface: #ffffff;
+  --ds-ink: #0d1220;
+  --ds-ink-2: #4a5468;
+  --ds-ink-3: #7c8598;
+  --ds-line: #e6e9f0;
+  --ds-accent: #2f5bff;
+  --ds-accent-600: #1f45db;
+  --ds-accent-tint: #eef2ff;
+  --ds-dark: #0d1220;
+}
+
+body.servico-detalhe,
+body.servicos-index {
+  background: var(--ds-bg);
+  color: var(--ds-ink);
+  font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+}
+body.servico-detalhe h1,
+body.servico-detalhe h2,
+body.servico-detalhe h3,
+body.servico-detalhe .serif,
+body.servicos-index h1,
+body.servicos-index h2,
+body.servicos-index h3,
+body.servicos-index .serif {
+  color: var(--ds-ink);
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  font-weight: 600;
+  letter-spacing: -.025em;
+}
+body.servico-detalhe .cabecalho,
+body.servicos-index .cabecalho {
+  background: rgba(247,248,251,.94);
+  border-bottom-color: var(--ds-line);
+}
+body.servico-detalhe .nav a,
+body.servicos-index .nav a { color: var(--ds-ink-2); font-family: 'Manrope', sans-serif; }
+body.servico-detalhe .nav a:hover,
+body.servico-detalhe .nav a[aria-current="page"],
+body.servicos-index .nav a:hover,
+body.servicos-index .nav a[aria-current="page"] { color: var(--ds-ink); }
+body.servico-detalhe .nav a[aria-current="page"],
+body.servicos-index .nav a[aria-current="page"] { border-bottom-color: var(--ds-accent); }
+body.servico-detalhe .anuncio,
+body.servicos-index .anuncio { background: var(--ds-dark); }
+body.servico-detalhe .anuncio .anuncio-cta,
+body.servicos-index .anuncio .anuncio-cta { color: #9eb1ff; }
+
+body.servico-detalhe .service-hero,
+body.servicos-index .hero-pagina {
+  color: var(--ds-ink);
+  background: radial-gradient(circle at 80% 10%, rgba(47,91,255,.12), transparent 36%), var(--ds-bg);
+  border-bottom: 1px solid var(--ds-line);
+}
+body.servico-detalhe .service-hero { padding-top: clamp(72px, 10vw, 128px); padding-bottom: clamp(72px, 10vw, 128px); }
+body.servico-detalhe .service-hero h1,
+body.servicos-index .hero-pagina h1 { color: var(--ds-ink); }
+body.servico-detalhe .service-hero .sub,
+body.servico-detalhe .service-breadcrumb,
+body.servicos-index .hero-pagina .sub { color: var(--ds-ink-2); }
+body.servico-detalhe .service-breadcrumb a { color: var(--ds-accent); border-bottom-color: rgba(47,91,255,.35); }
+body.servico-detalhe .service-hero .eyebrow,
+body.servicos-index .hero-pagina .eyebrow { color: var(--ds-accent); }
+body.servico-detalhe .service-hero-note { color: var(--ds-ink-3); }
+body.servico-detalhe .service-hero .botao,
+body.servicos-index .botao { background: var(--ds-accent); border-color: var(--ds-accent); color: #fff; }
+body.servico-detalhe .service-hero .botao:hover,
+body.servicos-index .botao:hover { background: var(--ds-accent-600); border-color: var(--ds-accent-600); }
+body.servico-detalhe .botao-invertido { background: var(--ds-accent); border-color: var(--ds-accent); color: #fff; }
+body.servico-detalhe .botao-invertido:hover { background: var(--ds-accent-600); border-color: var(--ds-accent-600); color: #fff; }
+
+body.servico-detalhe .service-nav {
+  border-bottom-color: var(--ds-line);
+  background: rgba(247,248,251,.96);
+}
+body.servico-detalhe .service-nav a { color: var(--ds-ink-2); }
+body.servico-detalhe .service-nav a:hover { color: var(--ds-accent); border-bottom-color: var(--ds-accent); }
+body.servico-detalhe .service-mockup {
+  border: 1px solid var(--ds-line);
+  border-radius: 18px;
+  background: var(--ds-surface);
+  box-shadow: 0 8px 30px rgba(13,18,32,.08);
+}
+body.servico-detalhe .mock-topbar { border-bottom-color: var(--ds-line); background: var(--ds-surface); }
+body.servico-detalhe .mock-shell { background: var(--ds-surface); }
+body.servico-detalhe .mock-side { border-right-color: var(--ds-line); background: #f1f3f8; }
+body.servico-detalhe .mock-side span.active { background: var(--ds-accent-tint); color: var(--ds-accent-600); }
+body.servico-detalhe .mock-main { background: var(--ds-surface); }
+body.servico-detalhe .mock-stat,
+body.servico-detalhe .mock-row { border-color: var(--ds-line); }
+body.servico-detalhe .mock-stat { border-radius: 10px; }
+body.servico-detalhe .mock-status { border-color: #b6c3f5; color: var(--ds-accent-600); background: var(--ds-accent-tint); }
+body.servico-detalhe .mock-progress i { background: var(--ds-accent); }
+body.servico-detalhe .mock-caption { color: var(--ds-ink-3); }
+
+body.servico-detalhe .secao,
+body.servicos-index .secao { background: var(--ds-bg); }
+body.servico-detalhe .secao-alt { background: var(--ds-surface); }
+body.servico-detalhe .service-intro .lead,
+body.servico-detalhe .service-section-title p,
+body.servico-detalhe .problem-item p,
+body.servico-detalhe .delivery-row p,
+body.servico-detalhe .scope-row span,
+body.servico-detalhe .service-source span { color: var(--ds-ink-2); }
+body.servico-detalhe .problem-list,
+body.servico-detalhe .delivery-list,
+body.servico-detalhe .scope-table,
+body.servico-detalhe .service-sources,
+body.servicos-index .lista-numerada { border-color: var(--ds-line); }
+body.servico-detalhe .problem-item,
+body.servico-detalhe .delivery-row,
+body.servico-detalhe .scope-row,
+body.servico-detalhe .service-source,
+body.servico-detalhe .passo,
+body.servicos-index .item-numerado { border-bottom-color: var(--ds-line); }
+body.servico-detalhe .problem-item .num,
+body.servico-detalhe .delivery-row .num,
+body.servico-detalhe .passo .num { color: var(--ds-accent); }
+body.servico-detalhe .scope-row span { border-left-color: var(--ds-line); }
+body.servico-detalhe .service-source a,
+body.servicos-index .link-sublinhado { color: var(--ds-accent); border-bottom-color: currentColor; }
+body.servicos-index .item-numerado:hover { background: rgba(47,91,255,.04); }
+body.servicos-index .item-numerado.card-destacado { background: var(--ds-accent-tint); }
+body.servicos-index .item-numerado p { color: var(--ds-ink-2); }
+body.servicos-index .item-numerado .num { color: var(--ds-ink-3); }
+body.servico-detalhe .cta-faixa,
+body.servico-detalhe .rodape,
+body.servicos-index .cta-faixa,
+body.servicos-index .rodape { background: var(--ds-dark); }
+body.servico-detalhe .cta-faixa,
+body.servicos-index .cta-faixa { border-radius: 28px; }
+body.servico-detalhe .cta-faixa h2,
+body.servicos-index .cta-faixa h2 { color: #fff; }
+body.servico-detalhe .cta-faixa p,
+body.servicos-index .cta-faixa p { color: rgba(255,255,255,.72); }
+body.servico-detalhe .rodape,
+body.servicos-index .rodape { color: rgba(255,255,255,.68); border-top: 0; }
+body.servico-detalhe .rodape h4,
+body.servicos-index .rodape h4 { color: #fff; }
+body.servico-detalhe .rodape p,
+body.servico-detalhe .rodape a,
+body.servico-detalhe .rodape li,
+body.servicos-index .rodape p,
+body.servicos-index .rodape a,
+body.servicos-index .rodape li { color: rgba(255,255,255,.68); }
+body.servico-detalhe .rodape a:hover,
+body.servicos-index .rodape a:hover { color: #9eb1ff; }
+
+@media (max-width: 700px) {
+  body.servico-detalhe .scope-row span { border-top-color: var(--ds-line); }
 }
