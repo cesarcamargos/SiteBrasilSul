@@ -2,6 +2,14 @@
    Sem este arquivo, ou com "reduzir movimento" ativo, o site fica 100% visível e funcional. */
 (function () {
   'use strict';
+  window.alternarMenu = function (botao) {
+    var menu = document.getElementById('menu');
+    if (!menu) return;
+    var aberto = menu.classList.toggle('aberto');
+    botao.setAttribute('aria-expanded', String(aberto));
+    botao.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+  };
+
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!('IntersectionObserver' in window)) return;
 
