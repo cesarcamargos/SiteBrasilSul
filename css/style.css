@@ -1,5 +1,6 @@
 /* ============================================================
-   BrasilSul Tecnologia — sistema visual\r\n   Layout editorial técnico · Space Grotesk + Manrope · Azul de ação
+   BrasilSul Tecnologia — sistema visual
+   Linguagem técnica · Segoe UI · Azul Azure
    Referências: Foster+Partners, David Chipperfield, Herzog & de Meuron
    ============================================================ */
 :root {
@@ -1703,7 +1704,7 @@ body.servico-detalhe,
 body.servicos-index {
   background: var(--ds-bg);
   color: var(--ds-ink);
-  font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", Arial, sans-serif;
 }
 body.servico-detalhe h1,
 body.servico-detalhe h2,
@@ -1714,44 +1715,65 @@ body.servicos-index h2,
 body.servicos-index h3,
 body.servicos-index .serif {
   color: var(--ds-ink);
-  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
-  letter-spacing: -.025em;
+  letter-spacing: -.015em;
 }
 body.servico-detalhe .cabecalho,
 body.servicos-index .cabecalho {
-  background: rgba(247,248,251,.94);
-  border-bottom-color: var(--ds-line);
+  background: rgba(255,255,255,.94);
+  border-bottom-color: var(--linha);
 }
 body.servico-detalhe .nav a,
-body.servicos-index .nav a { color: var(--ds-ink-2); font-family: 'Manrope', sans-serif; }
+body.servicos-index .nav a {
+  color: var(--tinta-suave);
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", Arial, sans-serif;
+}
 body.servico-detalhe .nav a:hover,
 body.servico-detalhe .nav a[aria-current="page"],
 body.servicos-index .nav a:hover,
 body.servicos-index .nav a[aria-current="page"] { color: var(--ds-ink); }
 body.servico-detalhe .nav a[aria-current="page"],
-body.servicos-index .nav a[aria-current="page"] { border-bottom-color: var(--ds-accent); }
+body.servicos-index .nav a[aria-current="page"] { border-bottom: 0; }
+body.servico-detalhe .nav .botao,
+body.servicos-index .nav .botao {
+  border-radius: 2px;
+  background: #0067b8;
+  border-color: #0067b8;
+  color: #fff;
+}
+body.servico-detalhe .nav .botao:hover,
+body.servicos-index .nav .botao:hover {
+  background: #005da6;
+  border-color: #005da6;
+  color: #fff;
+}
 body.servico-detalhe .anuncio,
 body.servicos-index .anuncio { background: var(--ds-dark); }
 body.servico-detalhe .anuncio .anuncio-cta,
 body.servicos-index .anuncio .anuncio-cta { color: #9eb1ff; }
 
-body.servico-detalhe .service-hero,
-body.servicos-index .hero-pagina {
+body.servico-detalhe .service-hero {
   color: var(--ds-ink);
   background: radial-gradient(circle at 80% 10%, rgba(47,91,255,.12), transparent 36%), var(--ds-bg);
   border-bottom: 1px solid var(--ds-line);
 }
 body.servico-detalhe .service-hero { padding-top: clamp(72px, 10vw, 128px); padding-bottom: clamp(72px, 10vw, 128px); }
-body.servico-detalhe .service-hero h1,
-body.servicos-index .hero-pagina h1 { color: var(--ds-ink); }
+body.servico-detalhe .service-hero h1 { color: var(--ds-ink); }
 body.servico-detalhe .service-hero .sub,
-body.servico-detalhe .service-breadcrumb,
-body.servicos-index .hero-pagina .sub { color: var(--ds-ink-2); }
+body.servico-detalhe .service-breadcrumb { color: var(--ds-ink-2); }
 body.servico-detalhe .service-breadcrumb a { color: var(--ds-accent); border-bottom-color: rgba(47,91,255,.35); }
-body.servico-detalhe .service-hero .eyebrow,
-body.servicos-index .hero-pagina .eyebrow { color: var(--ds-accent); }
+body.servico-detalhe .service-hero .eyebrow { color: var(--ds-accent); }
 body.servico-detalhe .service-hero-note { color: var(--ds-ink-3); }
+
+body.servicos-index .hero-pagina {
+  color: #fff;
+  background: #0b1220;
+  border-bottom: 0;
+}
+body.servicos-index .hero-pagina h1 { color: #fff; }
+body.servicos-index .hero-pagina .sub { color: rgba(255,255,255,.88); }
+body.servicos-index .hero-pagina .eyebrow { color: #7fd3ff; }
 body.servico-detalhe .service-hero .botao,
 body.servicos-index .botao { background: var(--ds-accent); border-color: var(--ds-accent); color: #fff; }
 body.servico-detalhe .service-hero .botao:hover,

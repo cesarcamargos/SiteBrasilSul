@@ -3,9 +3,10 @@
 Sistema de design oficial da BrasilSul Tecnologia. Aplicar em todas as páginas.
 
 ## Fontes
-- Títulos: **Space Grotesk** (600/700)
-- Texto: **Manrope** (400/500/600/700)
-- Import: `https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap`
+- Títulos: **Segoe UI** (600/700), com fallback para a fonte de sistema.
+- Texto: **Segoe UI** (400/500/600/700), com fallback para a fonte de sistema.
+- Stack: `"Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", Arial, sans-serif`.
+- Não carregar fontes externas nas páginas institucionais. A variante Microsoft Foundry também usa Segoe UI.
 
 ## Cores (tokens)
 ```
