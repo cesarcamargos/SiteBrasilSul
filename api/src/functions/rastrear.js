@@ -50,7 +50,7 @@ app.http('rastrear', {
         try { corpo = await request.json(); } catch {}
         const token = String(corpo.token || '');
         const evento = String(corpo.evento || '');
-        const permitidos = ['visita', 'engajamento', 'cta', 'tempo_pagina'];
+        const permitidos = ['visita', 'engajamento', 'cta', 'tempo_pagina', 'rolagem'];
         if (TOKEN_RE.test(token) && permitidos.includes(evento)) {
           const detalhe = typeof corpo.detalhe === 'string' ? corpo.detalhe.slice(0, 100) : '';
           await registrar(evento, token, request, detalhe);

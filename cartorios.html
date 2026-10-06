@@ -213,7 +213,7 @@
           </div>
         </div>
         <div class="campo"><label for="c-mensagem">Observações</label><textarea id="c-mensagem" name="Mensagem" placeholder="Conte um pouco sobre a situação atual de TI do cartório…"></textarea></div>
-        <button class="botao" type="submit" style="width:100%;justify-content:center;">Solicitar diagnóstico gratuito</button>
+        <button class="botao" type="submit" style="width:100%;justify-content:center;" data-cta="form-diagnostico-enviar">Solicitar diagnóstico gratuito</button>
         <p class="form-nota">Seus dados são usados apenas para o contato sobre este diagnóstico.</p>
       </form>
     </div>
@@ -223,7 +223,7 @@
     <div class="container">
       <div class="cta-faixa">
         <div><h2>Prazo mais curto: 180 dias para a Classe 3.</h2><p>Contados a partir de 22/08/2026. Quanto antes o diagnóstico for feito, mais tempo sobra para a implementação.</p></div>
-        <a class="botao botao-invertido" href="https://wa.me/5548998527340?text=Ol%C3%A1!%20Meu%20cart%C3%B3rio%20precisa%20de%20orienta%C3%A7%C3%A3o%20sobre%20o%20Provimento%20213." target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+        <a class="botao botao-invertido" href="https://wa.me/5548998527340?text=Ol%C3%A1!%20Meu%20cart%C3%B3rio%20precisa%20de%20orienta%C3%A7%C3%A3o%20sobre%20o%20Provimento%20213." target="_blank" rel="noopener" data-cta="whatsapp-faixa">Falar agora no WhatsApp</a>
       </div>
     </div>
   </section>
@@ -287,6 +287,23 @@
   function engajar() { if (feito) return; feito = true; enviar('engajamento'); }
   setTimeout(engajar, 10000);
   addEventListener('scroll', engajar, { once: true, passive: true });
+
+  var marcosRolagem = [25, 50, 75, 100];
+  var marcosEnviados = {};
+  function verificarRolagem() {
+    var alturaTotal = document.documentElement.scrollHeight - innerHeight;
+    if (alturaTotal <= 0) return;
+    var pct = Math.min(100, Math.round((scrollY / alturaTotal) * 100));
+    for (var i = 0; i < marcosRolagem.length; i++) {
+      var m = marcosRolagem[i];
+      if (pct >= m && !marcosEnviados[m]) {
+        marcosEnviados[m] = true;
+        enviar('rolagem', String(m));
+      }
+    }
+  }
+  addEventListener('scroll', verificarRolagem, { passive: true });
+  verificarRolagem();
 
   document.addEventListener('click', function (ev) {
     var alvo = ev.target.closest('[data-cta]');
