@@ -1861,3 +1861,17 @@ body.servicos-index .rodape a:hover { color: #9eb1ff; }
 @media (max-width: 700px) {
   body.servico-detalhe .scope-row span { border-top-color: var(--ds-line); }
 }
+
+/* ============================================================
+   Formulário de cotação — estados e ajustes funcionais
+   (sem alterar a identidade visual existente)
+   ============================================================ */
+.hero-pagina.hero-pagina-compacto { padding-top: 40px; padding-bottom: 36px; }
+.hero-pagina.hero-pagina-compacto .sub { margin-top: 12px; }
+.campo-oculto { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-status { margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--linha-forte); border-left-width: 4px; font-size: .92rem; line-height: 1.5; background: #fff; }
+.form-status.ok { border-color: #1f7a4a; color: #14532d; }
+.form-status.erro { border-color: #b3261e; color: #7a1a14; }
+.form-status:focus { outline: 2px solid currentColor; outline-offset: 2px; }
+.campo input[aria-invalid="true"], .campo select[aria-invalid="true"], .campo textarea[aria-invalid="true"] { border-bottom-color: #b3261e; }
+.form-nota a { text-decoration: underline; }

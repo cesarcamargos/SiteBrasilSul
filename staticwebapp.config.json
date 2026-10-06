@@ -3,6 +3,16 @@
     {
       "route": "/r/*",
       "rewrite": "/api/rastrear"
+    },
+    {
+      "route": "/azure-ia.html",
+      "redirect": "/inteligencia-artificial.html",
+      "statusCode": 301
     }
-  ]
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html"
+    }
+  }
 }

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contato e Cotação de Software e IA | BrasilSul Tecnologia</title>
-  <meta name="description" content="Peça uma cotação de IA no Azure, licenças Microsoft, Adobe, Veeam e mais. Fale com a BrasilSul por formulário, telefone, e-mail ou WhatsApp.">
+  <title>Peça uma Cotação de Software para Empresas | BrasilSul</title>
+  <meta name="description" content="Conte o que sua empresa precisa. Solicite cotação de Microsoft 365, Copilot, Adobe e IA no Azure pelo formulário ou WhatsApp da BrasilSul.">
   <link rel="canonical" href="https://www.brasilsul.net.br/contato.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Contato e Cotação de Software e IA | BrasilSul Tecnologia">
-  <meta property="og:description" content="Peça uma cotação de IA no Azure, licenças Microsoft, Adobe, Veeam e mais. Fale com a BrasilSul por formulário, telefone, e-mail ou WhatsApp.">
+  <meta property="og:title" content="Peça uma Cotação de Software para Empresas | BrasilSul">
+  <meta property="og:description" content="Conte o que sua empresa precisa. Solicite cotação de Microsoft 365, Copilot, Adobe e IA no Azure pelo formulário ou WhatsApp da BrasilSul.">
   <meta property="og:url" content="https://www.brasilsul.net.br/contato.html">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="BrasilSul Tecnologia">
@@ -64,7 +64,7 @@
 </head>
 <body>
 <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
-<div class="anuncio"><a href="./inteligencia-artificial.html">✧ <strong>Novidade:</strong> IA corporativa no Azure com nota fiscal brasileira<span class="anuncio-cta">Saiba mais →</span></a></div>
+<div class="anuncio"><a href="./copilot-microsoft-365.html">✧ <strong>Novidade:</strong> Copilot para Microsoft 365 — requisitos, licenças e adoção<span class="anuncio-cta">Saiba mais →</span></a></div>
 <header class="cabecalho">
   <div class="container cabecalho-inner">
     <a class="logo" href="index.html" aria-label="BrasilSul Tecnologia — página inicial">
@@ -75,31 +75,33 @@
     </button>
     <nav class="nav" id="menu" aria-label="Navegação principal">
       <a href="index.html">Home</a>
-      <a href="inteligencia-artificial.html">Inteligência Artificial</a>
+      <a href="microsoft-365.html">Microsoft 365</a>
+      <a href="adobe-creative-cloud.html">Adobe</a>
+      <a href="inteligencia-artificial.html">IA no Azure</a>
       <a href="servicos.html">Serviços</a>
       <a href="blog.html">Blog</a>
       <a href="sobre.html">Sobre</a>
-      <a href="contato.html" aria-current="page">Contato</a>
-      <a class="botao" href="contato.html">Pedir cotação</a>
+      <a class="botao" href="contato.html#formulario">Pedir cotação</a>
     </nav>
   </div>
 </header>
 <main id="conteudo">
 
-  <section class="hero-pagina">
+  <section class="hero-pagina hero-pagina-compacto">
     <div class="container">
       <p class="eyebrow">Contato</p>
-      <h1>Peça sua <span class="t-bronze">cotação.</span></h1>
-      <p class="sub">Preencha o formulário e receba o retorno da nossa equipe em até 1 dia útil. Se preferir, chame no WhatsApp.</p>
+      <h1>Peça sua <span class="t-bronze">cotação de software.</span></h1>
+      <p class="sub">Conte o que sua empresa precisa. A equipe retorna em até 1 dia útil; a proposta depende das informações do seu cenário. Se preferir, chame no WhatsApp.</p>
     </div>
   </section>
 
   <section class="secao">
     <div class="container contato-grid">
-      <form id="formulario" class="formulario" action="https://formspree.io/f/mgogowov" method="POST">
+      <form id="formulario" class="formulario" action="https://formspree.io/f/mgogowov" method="POST" data-lead>
         <input type="hidden" name="_subject" value="Novo pedido de cotacao - site BrasilSul">
         <input type="hidden" name="origem" value="Formulario de contato - site BrasilSul">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_next" value="https://www.brasilsul.net.br/obrigado.html">
+        <div class="campo-oculto" aria-hidden="true"><label for="gotcha">Não preencha este campo</label><input type="text" id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></div>
         <div class="campo-duplo">
           <div class="campo"><label for="nome">Nome *</label><input type="text" id="nome" name="name" required autocomplete="name"></div>
           <div class="campo"><label for="empresa">Empresa *</label><input type="text" id="empresa" name="empresa" required autocomplete="organization"></div>
@@ -112,24 +114,27 @@
           <label for="produto">Produto ou serviço de interesse *</label>
           <select id="produto" name="produto" required>
             <option value="" disabled selected>Selecione…</option>
-            <option>Inteligência Artificial (Azure / GPT / Claude)</option>
-            <option>Microsoft 365 / Office 365</option>
-            <option>Adobe Creative Cloud</option>
-            <option>Veeam (backup)</option>
-            <option>Antivírus (Kaspersky / Bitdefender)</option>
-            <option>VMware</option>
-            <option>Autodesk</option>
-            <option>TeamViewer</option>
-            <option>Consultoria de licenciamento</option>
-            <option>Migração Microsoft 365</option>
-            <option>Adequação Provimento CNJ 213 (cartórios)</option>
-            <option>Outro</option>
+            <option data-chave="microsoft-365">Microsoft 365</option>
+            <option data-chave="copilot">Copilot para Microsoft 365</option>
+            <option data-chave="adobe-creative-cloud">Adobe Creative Cloud</option>
+            <option data-chave="adobe-acrobat">Adobe Acrobat</option>
+            <option data-chave="azure-foundry">IA no Azure / Microsoft Foundry</option>
+            <option data-chave="backup-veeam">Backup Veeam</option>
+            <option data-chave="seguranca-endpoints">Segurança de endpoints (Kaspersky / Bitdefender)</option>
+            <option data-chave="migracao-microsoft-365">Migração Microsoft 365</option>
+            <option data-chave="licenciamento">Consultoria de licenciamento</option>
+            <option data-chave="cartorios">Soluções de TI para cartórios</option>
+            <option data-chave="vmware">VMware</option>
+            <option data-chave="autodesk">Autodesk</option>
+            <option data-chave="teamviewer">TeamViewer</option>
+            <option data-chave="outro">Outro produto ou necessidade</option>
           </select>
         </div>
-        <div class="campo"><label for="quantidade">Quantidade de licenças / usuários</label><input type="text" id="quantidade" name="quantidade" placeholder="Ex.: 25 usuários"></div>
-        <div class="campo"><label for="mensagem">Detalhes do pedido *</label><textarea id="mensagem" name="message" required placeholder="Conte o que sua empresa precisa…"></textarea></div>
+        <div class="campo"><label for="quantidade">Quantidade de licenças / usuários</label><input type="text" id="quantidade" name="quantidade" placeholder="Ex.: 25 usuários ou ainda não sei"></div>
+        <div class="campo"><label for="mensagem">Detalhes do pedido</label><textarea id="mensagem" name="message" placeholder="Conte o produto, o cenário ou a data de renovação…"></textarea></div>
+        <p id="form-status" class="form-status" tabindex="-1" hidden></p>
         <button class="botao" type="submit" style="width:100%;justify-content:center;">Enviar pedido de cotação</button>
-        <p class="form-nota">Seus dados são usados apenas para responder à sua solicitação.</p>
+        <p class="form-nota">Usamos seus dados para atender esta solicitação. Veja a <a href="privacidade.html">Política de Privacidade</a>.</p>
       </form>
 
       <div class="info-contato">
@@ -148,18 +153,11 @@
     <div class="rodape-grid">
       <div>
         <a class="logo" href="index.html"><img src="img/img_logo_preto.png" alt="BrasilSul Tecnologia" width="150" height="28"></a>
-        <p>Revenda corporativa e implementadora de soluções de TI desde 2001. Parceira Microsoft, Adobe, VMware e Veeam.</p>
+        <p>Software corporativo e IA no Azure para empresas. Sediada em Florianópolis/SC desde 2001, atende empresas de todo o Brasil.</p>
       </div>
       <div>
         <h4>Navegação</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="inteligencia-artificial.html">Inteligência Artificial</a></li>
-          <li><a href="servicos.html">Serviços</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="sobre.html">Sobre</a></li>
-          <li><a href="contato.html">Contato</a></li>
-        </ul>
+        <ul><li><a href="index.html">Home</a></li><li><a href="microsoft-365.html">Microsoft 365</a></li><li><a href="copilot-microsoft-365.html">Copilot</a></li><li><a href="adobe-creative-cloud.html">Adobe Creative Cloud</a></li><li><a href="adobe-acrobat.html">Adobe Acrobat</a></li><li><a href="inteligencia-artificial.html">IA no Azure</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="blog.html">Blog</a></li><li><a href="sobre.html">Sobre</a></li><li><a href="contato.html">Contato</a></li></ul>
       </div>
       <div>
         <h4>Contato</h4>
@@ -187,5 +185,7 @@
 </a>
 
 <script defer src="js/anim.js"></script>
+<script defer src="js/analytics.js"></script>
+<script defer src="js/leads.js"></script>
 </body>
 </html>

@@ -14,15 +14,19 @@ Profissionais de TI e gestores de infraestrutura em empresas brasileiras que pre
 
 ## Product Purpose
 
-A BrasilSul Tecnologia é revenda corporativa e implementadora de soluções de TI desde 2001, parceira oficial de Microsoft, Adobe, VMware, Veeam e outros fabricantes, e revendedora de modelos de IA (GPT, Claude, Llama, DeepSeek e outros) via Microsoft Azure com nota fiscal brasileira. O site existe para gerar pedidos de cotação e contato comercial qualificado. Sucesso é medido em cotações solicitadas e conversas iniciadas via WhatsApp.
+A BrasilSul Tecnologia ajuda empresas a escolher, contratar e administrar software corporativo. Sediada em Florianópolis/SC desde 2001, atende empresas de todo o Brasil. As três frentes prioritárias são Microsoft 365 e Copilot, Adobe para empresas e IA no Azure com Microsoft Foundry; serviços complementares incluem consultoria de licenciamento, backup, segurança de endpoints, migração e soluções para cartórios. O site existe para gerar pedidos de cotação qualificados (formulário e WhatsApp). Sucesso é medido em oportunidades qualificadas, acompanhadas até proposta e venda, não só em cliques.
 
 ## Positioning
 
-O Azure é a única nuvem que reúne os modelos de fronteira da OpenAI e da Anthropic — a BrasilSul entrega esse acesso com nota fiscal brasileira, pagamento em reais e suporte local, algo que nenhum concorrente resolve da mesma forma.
+A BrasilSul ajuda empresas a escolher, contratar e administrar software corporativo. Reúne Microsoft 365 e Copilot, Adobe e soluções de IA no Azure, com orientação técnica durante a contratação e o uso.
+
+Diferenciais demonstráveis: clareza da recomendação, transparência da proposta e acompanhamento da contratação. Não afirmar exclusividade ("única nuvem", "nenhum concorrente"), parceria direta com fabricantes de modelos, "conformidade garantida", controle absoluto de custos nem quem emite a nota fiscal; usar apenas "nota fiscal brasileira" e "pagamento em reais" quando o fluxo do produto estiver confirmado.
+
+Regras de conteúdo: não inventar clientes, certificações, depoimentos, preços ou métricas. Alegações sem comprovação ficam fora do site e registradas em docs/PENDENCIAS-COMERCIAIS.md. Não especificar a modalidade de atendimento (nada de "remoto", "presencial" ou "suporte local").
 
 ## Brand Personality
 
-Confiável, técnica, local. Fala como especialista que entende do assunto, não como vendedor genérico de tecnologia. Tom direto e editorial, sem jargão de startup. Transmite solidez de 25 anos de mercado e proximidade no atendimento (suporte em português, contato direto por WhatsApp).
+Confiável, técnica, local. Fala como especialista que entende do assunto, não como vendedor genérico de tecnologia. Tom direto e editorial, sem jargão de startup. Transmite solidez de mais de 25 anos de mercado e clareza no atendimento (suporte em português, contato direto por WhatsApp).
 
 ## Anti-references
 
@@ -30,11 +34,11 @@ A identidade visual oficial está documentada em DesignSystemsBrasilSul.md: Sego
 
 ## Design Principles
 
-- Confiança antes de conversão: cada seção reforça credibilidade (parcerias oficiais, números, 25 anos) antes de pedir uma ação.
+- Confiança antes de conversão: cada seção reforça credibilidade (escopo claro, processo de contratação, tempo de atuação confirmado) antes de pedir uma ação.
 - Fala de especialista, não de vendedor: copy direta, sem hype, sem jargão de marketing de tecnologia.
 - Um caminho claro até a cotação: toda página relevante conduz a "Pedir cotação" ou WhatsApp, sem distrair com CTAs concorrentes.
 - Editorial e técnico: tipografia Segoe UI, fundo claro, azul de ação, superfícies brancas e espaço em branco carregam a marca — sem excesso de elementos decorativos.
-- Local e legível: suporte em português e nota fiscal brasileira são diferenciais reais, não devem virar apenas selos decorativos — devem estar no texto e na estrutura da página.
+- Local e legível: suporte em português e nota fiscal brasileira são informações úteis ao comprador, não devem virar apenas selos decorativos — devem estar no texto e na estrutura da página.
 
 ## Accessibility & Inclusion
 
