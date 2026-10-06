@@ -2009,3 +2009,9 @@ body.servico-detalhe .mock-caption,
 .hero-artigo .container-estreito { position: relative; z-index: 1; }
 .hero-artigo .post-voltar { display: flex; width: fit-content; }
 .hero-artigo .post-meta .categoria { display: none; }
+.hero-com-mockup h1 { max-width: 14ch; }
+.hero-com-mockup .service-hero-grid { gap: clamp(32px, 5vw, 64px); }
+.hero-com-mockup .mock-caption { color: rgba(255,255,255,.6); }
+@media (max-width: 960px) { .hero-com-mockup .foundry-body { grid-template-columns: 1fr; } .hero-com-mockup .foundry-sidebar { display: none; } }
+.hero-com-mockup .botao:not(.botao-whats) { background: #fff; border-color: #fff; color: #0b1220; }
+.hero-com-mockup .botao:not(.botao-whats):hover { background: #e9eef5; border-color: #e9eef5; color: #0b1220; }
