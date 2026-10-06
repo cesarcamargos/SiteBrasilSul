@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Programar com IA: o que é o "loop" de desenvolvimento assistido | Blog BrasilSul Tecnologia</title>
-  <meta name="description" content="Ferramentas como GitHub Copilot e Claude Code mudaram a forma de programar. Entenda o conceito do loop — o ciclo de instruir, gerar, testar e refinar — e como isso acelera projetos de software.">
+  <title>Desenvolvimento com IA: o ciclo de instruir, testar e revisar | BrasilSul</title>
+  <meta name="description" content="Entenda o ciclo de desenvolvimento assistido por IA (instruir, gerar, testar e refinar) e como integrar modelos de IA a sistemas via API.">
   <link rel="canonical" href="https://www.brasilsul.net.br/blog/programar-com-ia-o-que-e-o-loop.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Programar com IA: o que é o "loop" de desenvolvimento assistido | Blog BrasilSul Tecnologia">
-  <meta property="og:description" content="Ferramentas como GitHub Copilot e Claude Code mudaram a forma de programar. Entenda o conceito do loop — o ciclo de instruir, gerar, testar e refinar — e como isso acelera projetos de software.">
+  <meta property="og:title" content="Desenvolvimento com IA: o ciclo de instruir, testar e revisar | BrasilSul">
+  <meta property="og:description" content="Entenda o ciclo de desenvolvimento assistido por IA (instruir, gerar, testar e refinar) e como integrar modelos de IA a sistemas via API.">
   <meta property="og:url" content="https://www.brasilsul.net.br/blog/programar-com-ia-o-que-e-o-loop.html">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="BrasilSul Tecnologia">
@@ -20,13 +20,13 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ITService",
+  "@type": "Organization",
+  "@id": "https://www.brasilsul.net.br/#organizacao",
   "name": "BrasilSul Tecnologia",
-  "legalName": "BrasilSul Tecnologia",
-  "url": "https://www.brasilsul.net.br",
+  "url": "https://www.brasilsul.net.br/",
   "logo": "https://www.brasilsul.net.br/img/img_logo_preto.png",
   "foundingDate": "2001",
-  "description": "Revenda corporativa e parceira Microsoft, Adobe, VMware, Veeam, Autodesk, TeamViewer e segurança da informação. Atendimento em todo o Brasil com sede em Florianópolis - Santa Catarina.",
+  "description": "Software corporativo e IA no Azure para empresas. Sediada em Florianópolis/SC, atende empresas de todo o Brasil.",
   "telephone": "+55-48-3282-5678",
   "email": "atendimento@brasilsul.net.br",
   "address": {
@@ -46,30 +46,18 @@
     }
   ],
   "knowsAbout": [
-    "Venda de Licenças Microsoft Office",
-    "Licenciamento Microsoft 365 Corporativo",
-    "Parceiro Oficial Microsoft",
-    "Licenciamento Adobe Creative Cloud para Empresas",
-    "Consultoria de Licenciamento de Software",
-    "Antivírus Corporativo Kaspersky e Bitdefender",
-    "Backup Corporativo Veeam",
-    "Virtualização VMware",
-    "Licenciamento Autodesk",
-    "Acesso Remoto TeamViewer",
-    "Inteligência Artificial no Microsoft Azure"
+    "Microsoft 365",
+    "Copilot para Microsoft 365",
+    "Adobe Creative Cloud",
+    "Adobe Acrobat",
+    "IA no Azure com Microsoft Foundry",
+    "Consultoria de licenciamento de software",
+    "Backup Veeam",
+    "Segurança de endpoints"
   ]
 }
 </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Programar com IA: o que é o “loop” de desenvolvimento assistido",
-  "datePublished": "2026-06-16",
-  "author": {"@type": "Organization", "name": "BrasilSul Tecnologia"},
-  "publisher": {"@type": "Organization", "name": "BrasilSul Tecnologia"}
-}
-</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Desenvolvimento com IA: o ciclo de instruir, testar e revisar","datePublished":"2026-06-16","author":{"@type":"Organization","name":"BrasilSul Tecnologia"},"publisher":{"@id":"https://www.brasilsul.net.br/#organizacao"},"description":"Entenda o ciclo de desenvolvimento assistido por IA (instruir, gerar, testar e refinar) e como integrar modelos de IA a sistemas via API.","dateModified":"2026-10-06"}</script>
 </head>
 <body>
 <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
@@ -100,8 +88,8 @@
     <div class="container-estreito">
       <a class="post-voltar" href="../blog.html">← Voltar ao blog</a>
       <p class="eyebrow">Desenvolvimento</p>
-      <h1 style="font-size:clamp(2rem,4.4vw,2.9rem);margin-top:14px;max-width:38rem;">Programar com IA: o que é o "loop" de desenvolvimento assistido</h1>
-      <div class="post-meta"><span class="categoria">Desenvolvimento</span><time datetime="2026-06-16">16 de junho de 2026</time><span>BrasilSul Tecnologia</span></div>
+      <h1 style="font-size:clamp(2rem,4.4vw,2.9rem);margin-top:14px;max-width:38rem;">Desenvolvimento com IA: o ciclo de instruir, testar e revisar</h1>
+      <div class="post-meta"><span class="categoria">Desenvolvimento</span><time datetime="2026-06-16">16 de junho de 2026</time><span>BrasilSul Tecnologia</span><span>Revisado em 6 de outubro de 2026</span></div>
 
       <div class="post-corpo">
         <p>Ferramentas como GitHub Copilot, Claude Code e assistentes de IA integrados a editores de código mudaram a forma como times de desenvolvimento trabalham. Mas para tirar proveito real dessas ferramentas, é preciso entender um conceito central: o <strong>loop</strong> de desenvolvimento assistido por IA.</p>
@@ -128,7 +116,7 @@
         </ul>
 
         <h2>O que isso significa para empresas</h2>
-        <p>Equipes de desenvolvimento que adotam esse fluxo relatam ganhos reais de velocidade em tarefas repetitivas — testes, documentação, refatoração — sem abrir mão da qualidade, desde que a revisão humana permaneça no ciclo. Para empresas que usam Microsoft Azure, essas mesmas capacidades de IA (incluindo modelos como GPT e Claude) também podem ser integradas via API aos sistemas internos, não apenas ao editor de código do desenvolvedor.</p>
+        <p>Equipes de desenvolvimento que adotam esse fluxo relatam ganhos reais de velocidade em tarefas repetitivas — testes, documentação, refatoração — sem abrir mão da qualidade, desde que a revisão humana permaneça no ciclo. Para empresas que usam Microsoft Azure, essas mesmas capacidades de IA (incluindo modelos como GPT e Claude) também podem ser integradas via API aos sistemas internos, não apenas ao editor de código do desenvolvedor. Ferramentas de programação e APIs de modelos são coisas diferentes: veja <a href="../inteligencia-artificial.html">IA no Azure com Microsoft Foundry</a>.</p>
 
     </div>
   </article>
@@ -180,5 +168,6 @@
 </a>
 
 <script defer src="../js/anim.js"></script>
+<script defer src="../js/analytics.js"></script>
 </body>
 </html>

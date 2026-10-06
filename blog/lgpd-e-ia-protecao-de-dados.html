@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LGPD e IA: como usar inteligência artificial sem violar a proteção de dados | Blog BrasilSul Tecnologia</title>
-  <meta name="description" content="Colar dados de clientes em uma IA pública pode violar a LGPD. Entenda os riscos, o conceito de residência de dados e como usar IA generativa de forma regular e segura no Brasil.">
+  <title>IA e LGPD: controles para proteger dados da empresa | BrasilSul</title>
+  <meta name="description" content="Como estabelecer política de uso de IA, avaliar fornecedores e proteger dados pessoais na empresa, com base na LGPD e nas orientações da ANPD.">
   <link rel="canonical" href="https://www.brasilsul.net.br/blog/lgpd-e-ia-protecao-de-dados.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="LGPD e IA: como usar inteligência artificial sem violar a proteção de dados | Blog BrasilSul Tecnologia">
-  <meta property="og:description" content="Colar dados de clientes em uma IA pública pode violar a LGPD. Entenda os riscos, o conceito de residência de dados e como usar IA generativa de forma regular e segura no Brasil.">
+  <meta property="og:title" content="IA e LGPD: controles para proteger dados da empresa | BrasilSul">
+  <meta property="og:description" content="Como estabelecer política de uso de IA, avaliar fornecedores e proteger dados pessoais na empresa, com base na LGPD e nas orientações da ANPD.">
   <meta property="og:url" content="https://www.brasilsul.net.br/blog/lgpd-e-ia-protecao-de-dados.html">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="BrasilSul Tecnologia">
@@ -20,13 +20,13 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ITService",
+  "@type": "Organization",
+  "@id": "https://www.brasilsul.net.br/#organizacao",
   "name": "BrasilSul Tecnologia",
-  "legalName": "BrasilSul Tecnologia",
-  "url": "https://www.brasilsul.net.br",
+  "url": "https://www.brasilsul.net.br/",
   "logo": "https://www.brasilsul.net.br/img/img_logo_preto.png",
   "foundingDate": "2001",
-  "description": "Revenda corporativa e parceira Microsoft, Adobe, VMware, Veeam, Autodesk, TeamViewer e segurança da informação. Atendimento em todo o Brasil com sede em Florianópolis - Santa Catarina.",
+  "description": "Software corporativo e IA no Azure para empresas. Sediada em Florianópolis/SC, atende empresas de todo o Brasil.",
   "telephone": "+55-48-3282-5678",
   "email": "atendimento@brasilsul.net.br",
   "address": {
@@ -46,30 +46,18 @@
     }
   ],
   "knowsAbout": [
-    "Venda de Licenças Microsoft Office",
-    "Licenciamento Microsoft 365 Corporativo",
-    "Parceiro Oficial Microsoft",
-    "Licenciamento Adobe Creative Cloud para Empresas",
-    "Consultoria de Licenciamento de Software",
-    "Antivírus Corporativo Kaspersky e Bitdefender",
-    "Backup Corporativo Veeam",
-    "Virtualização VMware",
-    "Licenciamento Autodesk",
-    "Acesso Remoto TeamViewer",
-    "Inteligência Artificial no Microsoft Azure"
+    "Microsoft 365",
+    "Copilot para Microsoft 365",
+    "Adobe Creative Cloud",
+    "Adobe Acrobat",
+    "IA no Azure com Microsoft Foundry",
+    "Consultoria de licenciamento de software",
+    "Backup Veeam",
+    "Segurança de endpoints"
   ]
 }
 </script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "LGPD e IA: como usar inteligência artificial sem violar a proteção de dados",
-  "datePublished": "2026-07-07",
-  "author": {"@type": "Organization", "name": "BrasilSul Tecnologia"},
-  "publisher": {"@type": "Organization", "name": "BrasilSul Tecnologia"}
-}
-</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"IA e LGPD: controles para proteger dados da empresa","datePublished":"2026-07-07","author":{"@type":"Organization","name":"BrasilSul Tecnologia"},"publisher":{"@id":"https://www.brasilsul.net.br/#organizacao"},"description":"Como estabelecer política de uso de IA, avaliar fornecedores e proteger dados pessoais na empresa, com base na LGPD e nas orientações da ANPD.","dateModified":"2026-10-06"}</script>
 </head>
 <body>
 <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
@@ -100,36 +88,29 @@
     <div class="container-estreito">
       <a class="post-voltar" href="../blog.html">← Voltar ao blog</a>
       <p class="eyebrow">Compliance</p>
-      <h1 style="font-size:clamp(2rem,4.4vw,2.9rem);margin-top:14px;max-width:38rem;">LGPD e IA: como usar inteligência artificial sem violar a proteção de dados</h1>
-      <div class="post-meta"><span class="categoria">Compliance</span><time datetime="2026-07-07">7 de julho de 2026</time><span>BrasilSul Tecnologia</span></div>
+      <h1 style="font-size:clamp(2rem,4.4vw,2.9rem);margin-top:14px;max-width:38rem;">IA e LGPD: controles para proteger dados da empresa</h1>
+      <div class="post-meta"><span class="categoria">Compliance</span><time datetime="2026-07-07">7 de julho de 2026</time><span>BrasilSul Tecnologia</span><span>Revisado em 6 de outubro de 2026</span></div>
 
       <div class="post-corpo">
-        <p>A IA generativa entrou nas empresas por baixo, sem passar pelo departamento de TI. Um colaborador cola o contrato de um cliente numa ferramenta gratuita para resumir, outro joga uma planilha de vendas com CPFs para "gerar uma análise". É prático. E, na maioria das vezes, é uma violação da LGPD acontecendo em silêncio.</p>
+<p>A IA generativa costuma entrar nas empresas sem passar pela TI. Um colaborador cola o contrato de um cliente em uma ferramenta para resumir; outro envia uma planilha com CPFs para gerar uma análise. Esse uso pode, sim, ser um problema de proteção de dados, mas depende das condições do tratamento.</p>
+<h2>Onde está o risco</h2>
+<p>Ao enviar dados pessoais a uma ferramenta de IA, a empresa precisa saber onde o dado é armazenado, por quanto tempo, por quem é acessado e se pode ser usado para melhorar o serviço. Planos gratuitos e planos corporativos costumam ter termos diferentes sobre retenção, administração, auditoria e uso das entradas. A empresa, como controladora, continua responsável por demonstrar como trata os dados. Veja também o artigo sobre <a href="ia-gratuita-lgpd-transferencia-internacional.html">transferência internacional de dados</a>.</p>
+<h2>Proibir não resolve</h2>
+<p>Bloquear o acesso raramente funciona: as pessoas usam pelo celular ou em casa. O caminho mais eficaz combina política clara e alternativa corporativa fácil de usar.</p>
+<h2>Região, contrato e implantação</h2>
+<p>Em ambientes corporativos, como o Azure, há opções de região de processamento e termos de tratamento de dados. Esses pontos variam conforme o modelo e o tipo de implantação, e a localização do dado é um elemento de governança, não uma garantia de conformidade. Consulte os termos de cada oferta antes de enviar dados pessoais.</p>
+<h2>Checklist de controles</h2>
+<ol>
+<li>Definir uma política de uso de IA: o que pode e o que não pode ser inserido;</li>
+<li>Oferecer uma ferramenta corporativa com contrato de tratamento de dados;</li>
+<li>Avaliar fornecedores, suboperadores, região, retenção e transferências internacionais com o jurídico e o encarregado;</li>
+<li>Aplicar identidade, MFA, permissões e registros de uso;</li>
+<li>Treinar a equipe e registrar incidentes.</li>
+</ol>
+<h2>Como a BrasilSul pode ajudar</h2>
+<p>A BrasilSul orienta a contratação e a configuração do ambiente de IA no Azure, conforme o escopo da proposta. A adequação à LGPD envolve base legal, políticas e revisão jurídica, que não são substituídas por uma plataforma. Veja <a href="../inteligencia-artificial.html">IA no Azure com Microsoft Foundry</a>.</p>
+<p class="post-fonte">Fontes: <a href="https://planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank" rel="noopener">Lei nº 13.709/2018 (LGPD)</a> e <a href="https://www.gov.br/anpd/pt-br/assuntos/assuntos-internacionais/transferencia-internacional-de-dados" target="_blank" rel="noopener">ANPD — transferência internacional</a>. Conteúdo informativo; não substitui orientação jurídica ou técnica especializada.</p>
 
-        <h2>Onde está o risco</h2>
-        <p>Quando um dado pessoal (nome, CPF, e-mail, dado de saúde ou financeiro) é enviado para uma ferramenta de IA pública e gratuita, a empresa perde o controle sobre ele. Duas perguntas passam a não ter resposta clara:</p>
-        <ul>
-          <li><strong>Onde esse dado é armazenado?</strong> Em geral, em servidores fora do Brasil, o que caracteriza transferência internacional de dados;</li>
-          <li><strong>Esse dado será usado para treinar o modelo?</strong> Em muitas ferramentas gratuitas, sim, o que pode expor a informação a terceiros.</li>
-        </ul>
-        <p>A LGPD responsabiliza a <strong>empresa</strong> como controladora dos dados, não o funcionário que colou o texto. A multa pode chegar a 2% do faturamento, limitada a R$ 50 milhões por infração, além do dano de reputação.</p>
-
-        <h2>Proibir não funciona</h2>
-        <p>Bloquear o acesso à IA não resolve: a equipe usa pelo celular, em casa, no fim de semana. O caminho eficaz não é proibir a ferramenta, é oferecer uma alternativa corporativa segura, na qual usar IA seja tão fácil quanto o atalho arriscado.</p>
-
-        <h3>Residência de dados: o conceito-chave</h3>
-        <p>Residência de dados é a garantia de que as informações são processadas e armazenadas em uma região definida, sob regras contratuais claras. Em um ambiente de IA corporativo, como o do <strong>Microsoft Azure</strong>, a empresa controla a região de processamento, e os dados enviados <strong>não</strong> são usados para treinar os modelos públicos. É a diferença entre um serviço com contrato e responsabilidade e uma caixa-preta gratuita.</p>
-
-        <h2>O checklist do uso responsável</h2>
-        <ul>
-          <li>Definir uma <strong>política de uso de IA</strong> clara: o que pode e o que não pode ser inserido;</li>
-          <li>Oferecer uma <strong>ferramenta corporativa</strong> com contrato de tratamento de dados;</li>
-          <li>Manter o processamento sob <strong>controle de região</strong> e com dados fora do treinamento público;</li>
-          <li>Treinar a equipe, o elo mais frágil costuma ser a falta de informação, não a má intenção.</li>
-        </ul>
-
-        <h2>Como a BrasilSul ajuda</h2>
-        <p>A BrasilSul entrega o ambiente de IA corporativo via Microsoft Azure, com controle de região, dados fora do treinamento público, fatura em reais e nota fiscal brasileira. Damos à sua equipe o poder da IA generativa sem transformar a produtividade de hoje no incidente de amanhã.</p>
 
     </div>
   </article>
@@ -181,5 +162,6 @@
 </a>
 
 <script defer src="../js/anim.js"></script>
+<script defer src="../js/analytics.js"></script>
 </body>
 </html>
