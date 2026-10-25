@@ -1,49 +1,54 @@
 # BrasilSul — Design System
 
-Sistema de design oficial da BrasilSul Tecnologia. Aplicar em todas as páginas.
+Sistema aplicado às 30 páginas do site a partir do modelo `BrasilSul-site/dist`, fornecido em 24/10/2026. A referência substitui a composição azul anterior por horizonte fotográfico, verdes suaves, botões escuros e superfícies claras. A personalidade continua confiável, técnica e próxima.
 
-## Fontes
-- Títulos: **Segoe UI** (600/700), com fallback para a fonte de sistema.
-- Texto: **Segoe UI** (400/500/600/700), com fallback para a fonte de sistema.
-- Stack: `"Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", Arial, sans-serif`.
-- Não carregar fontes externas nas páginas institucionais. A variante Microsoft Foundry também usa Segoe UI.
+## Tipografia
 
-## Cores (tokens)
+- Família: `"Segoe UI", -apple-system, BlinkMacSystemFont, system-ui, "Helvetica Neue", Arial, sans-serif`.
+- Não carregar fontes externas. Texto corrente de 16–18px; rótulos e metadados podem ser menores.
+- Títulos com peso 600, escala fluida e espaçamento mínimo de `-.04em`. Usar `text-wrap: balance` e permitir quebra em telas pequenas.
+
+## Cores
+
+```css
+--paper: #fafbf8;  /* fundo */
+--ink: #20251f;    /* texto e botões principais */
+--muted: #56624f;  /* texto secundário */
+--line: #dfe3da;   /* separadores */
+--lime: #c9fa69;   /* detalhes e indicadores na home */
+--accent: #365b43; /* links e estados ativos */
 ```
---bg: #f7f8fb;        /* fundo claro */
---surface: #ffffff;   /* cartões */
---ink: #0d1220;       /* texto forte */
---ink-2: #4a5468;     /* texto secundário */
---ink-3: #7c8598;     /* texto fraco / labels */
---line: #e6e9f0;      /* bordas / hairlines */
---accent: #2f5bff;    /* azul de ação */
---accent-600: #1f45db;/* hover */
---accent-tint: #eef2ff;
---dark: #0d1220;      /* seções escuras */
-```
-Cor de link padrão = `--accent`; hover = `--accent-600`.
 
-## Forma & profundidade
-- Raio: cartões `18px`, pills/botões `999px`, blocos grandes `28px`.
-- Sombras: `--shadow-sm: 0 1px 2px rgba(13,18,32,.04), 0 2px 8px rgba(13,18,32,.05)`; `--shadow-md: 0 8px 30px rgba(13,18,32,.08)`.
-- Espaçamento de borda de página: `--edge: clamp(20px,5vw,64px)`; largura máx `1160px`.
+As páginas internas usam `#e8efdd` nos cabeçalhos e `#f0f3eb` nas faixas alternadas. Textos sobre fundos claros devem manter contraste de pelo menos 4,5:1.
 
 ## Componentes
-- **Nav**: sticky, fundo translúcido com blur, hairline inferior, marca "BrasilSul." (ponto em `--accent`), botão primário "Pedir cotação".
-- **Botões**: `.btn-primary` (azul, sombra azul, hover translateY -1px) e `.btn-ghost` (transparente, borda `--line`). Grande: `.btn-lg`.
-- **Hero**: título até ~16ch com termo-chave em `em` cor `--accent`; gradiente radial sutil de fundo; badge "eyebrow" pill com ponto azul.
-- **Cards**: superfície branca, borda `--line`, ícone 46px em quadrado `--accent-tint`/`--accent`, hover eleva.
-- **Faixa escura** (`--dark`): números/stats, texto branco, destaques `#8aa2ff`.
-- **Faixa de fabricantes**: chips pill com borda.
-- **Contato**: cartão escuro raio 28px com gradiente azul, pills de contato (e-mail, telefone, WhatsApp).
 
-## Animação (opcional no hero)
-Rede neural em canvas: nós azuis `rgba(47,91,255,·)` ligados por linhas, pulsando; ficam **em volta do texto** (zona de exclusão ao redor do bloco `.wrap`, nós ricocheteiam na borda). Respeitar `prefers-reduced-motion`.
+- **Cabeçalho**: `.header`, logo original centralizado no desktop, navegação à esquerda, contato e cotação à direita. Menu recolhido até 1050px, com estado acessível, fechamento por Escape e links disponíveis sem JavaScript.
+- **Home**: fotografia `img/horizonte.webp`, chamada centralizada e painel de soluções com abas Microsoft, Adobe e Azure. As abas aceitam setas, Home e End.
+- **Páginas internas**: `.hero-pagina`, `.service-hero` e `.cart-hero` usam a mesma fotografia sob uma camada verde clara. Mockups têm superfícies claras e bordas suaves, como o painel da home.
+- **Botões**: `.btn` e `.botao`, fundo escuro, texto branco e formato pill. A ação principal leva a `contato.html#formulario`, preservando `?solucao=` quando houver contexto de produto.
+- **Conteúdo**: manter comparativos, tabelas e listas técnicas. Artigos e documentos legais têm coluna de leitura de até 72ch.
+- **Cotação**: preservar o formulário de contato, a integração existente, a seleção por URL, a validação, os estados de envio e o POST nativo sem JavaScript.
+- **Rodapé**: `.footer` claro e compartilhado, com todas as soluções, navegação institucional e contatos.
+- **Raios**: 18–24px em painéis e blocos principais; 10–17px em campos e componentes menores; 50px nos botões.
 
-## Regras
-- Estilos inline/CSS no `<style>`; sem emojis (exceto se pedido).
-- Escala mínima de texto 15–16px corpo.
-- Idioma: Português (Brasil).
-- Contatos: Florianópolis–SC · (48) 3282-5678 · WhatsApp (48) 99852-7340 · atendimento@brasilsul.net.br · desde 2001.
+## Arquivos
 
-Páginas de referência: `index.html` (sistema moderno canônico). A página `azure-ia.html` usa uma variante Microsoft Foundry (Segoe UI + azul Azure) apenas para o tema de IA.
+- `css/style.css`: base visual adaptada do modelo.
+- `css/pages.css`: tokens oficiais, acessibilidade, páginas internas e responsividade.
+- `css/layout.css`: geometrias dos conteúdos existentes, isoladas em `@layer layout`, com precedência inferior ao tema.
+- `css/motion.css` e `js/motion.js`: movimentos do modelo, controle de preferência e retorno ao início.
+- `js/site.js`: menu compartilhado e abas da home.
+- `js/leads.js` e `js/analytics.js`: integrações existentes.
+
+## Movimento e acessibilidade
+
+Manter o conteúdo visível antes das animações. Respeitar `prefers-reduced-motion`, permitir pausar os efeitos e preservar foco visível. Não adicionar dependências de execução ou tornar a leitura dependente de JavaScript.
+
+## Conteúdo e contatos
+
+Português do Brasil. Não inventar clientes, preços, certificações ou garantias. Confiança antes de conversão, explicações técnicas claras e caminho único até a cotação.
+
+Florianópolis–SC · (48) 3282-5678 · WhatsApp (48) 99852-7340 · atendimento@brasilsul.net.br · desde 2001.
+
+Referência canônica: `index.html`. Validar os links e a estrutura com `python scripts/verificar-site.py`.
