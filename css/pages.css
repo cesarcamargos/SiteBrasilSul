@@ -109,6 +109,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .site-inner main h1 { font-size: clamp(2.5rem, 4.6vw, 4.75rem); line-height: 1.08; margin: 18px 0 22px; font-weight: 600; }
 .site-inner main h2 { font-size: clamp(1.9rem, 3vw, 2.8rem); line-height: 1.14; font-weight: 600; }
 .site-inner main h3 { font-size: 1.2rem; line-height: 1.35; font-weight: 600; letter-spacing: -.025em; }
+.site-inner main .tit-h3 { font-size: 1.2rem; line-height: 1.35; font-weight: 600; letter-spacing: -.025em; }
 .site-inner main a:not(.botao) { text-underline-offset: 4px; }
 .site-inner main p a, .site-inner .post-corpo a, .site-inner .legal-corpo a { color: var(--accent); text-decoration: underline; }
 .site-inner .eyebrow { font-size: 12px; text-transform: none; color: var(--accent); letter-spacing: .02em; background: none; border: 0; padding: 0; font-weight: 600; }

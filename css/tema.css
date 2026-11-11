@@ -1,0 +1,184 @@
+/* BrasilSul 3.0 — camada de tema e efeitos compartilhada pelas 30 páginas.
+   Carrega por último. Todo movimento depende de html.fx (definida no <head>
+   quando o visitante não pediu redução de movimento nem pausou os efeitos). */
+:root {
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --tinta-faixa: #eef2e7;
+  interpolate-size: allow-keywords;
+}
+
+/* Foco na cor da marca (antes azulado, resto do tema anterior). */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Troca de página: o cabeçalho permanece, o conteúdo se dissolve. */
+@view-transition { navigation: auto; }
+.header { view-transition-name: cabecalho; }
+::view-transition-old(root) { animation: vt-sai .16s ease both; }
+::view-transition-new(root) { animation: vt-entra .34s var(--ease) both; }
+@keyframes vt-sai { to { opacity: 0; } }
+@keyframes vt-entra { from { opacity: 0; translate: 0 10px; } }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
+html:not(.fx)::view-transition-group(*), html:not(.fx)::view-transition-old(*), html:not(.fx)::view-transition-new(*) { animation: none !important; }
+
+/* Cabeçalho */
+.header {
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  transition: box-shadow .3s;
+}
+.header.is-scrolled { background: var(--paper); box-shadow: 0 1px 0 var(--line), 0 10px 30px -22px #20251f40; }
+.header nav > a { position: relative; }
+.header nav > a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 8px;
+  height: 1px;
+  background: currentColor;
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale .4s var(--ease);
+}
+.header nav > a:hover::after { scale: 1 1; }
+.menu-toggle span { transition: transform .3s var(--ease), translate .3s var(--ease); }
+.menu-toggle[aria-expanded="true"] span:first-child { translate: 0 4px; transform: rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:last-child { translate: 0 -4px; transform: rotate(-45deg); }
+.fx .header nav.open { animation: sobe .35s var(--ease) both; }
+
+/* Botões: resposta curta, sem deslocar o layout. */
+.btn, .botao { transition: background .25s, border-color .25s, color .25s, scale .2s var(--ease); }
+.btn:hover { transform: none; }
+.btn:active, .botao:active { scale: .98; }
+.btn > span:last-child:not(.circle), .text-link > span, .circle { display: inline-block; transition: translate .35s var(--ease), rotate .45s var(--ease); }
+.btn:hover > span:last-child:not(.circle), .text-link:hover > span { translate: 2px -2px; }
+.btn:hover > .circle { rotate: 45deg; }
+.btn-outline:hover { border-color: var(--ink); }
+
+/* Sublinhado que se desenha da esquerda. */
+.text-link, .complementos a, .fecho-whatsapp, .footer-main > div > a:not(.footer-brand), .footer-bottom a {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size .4s var(--ease), color .25s;
+  padding-bottom: 2px;
+}
+.text-link:hover, .complementos a:hover, .fecho-whatsapp:hover,
+.footer-main > div > a:not(.footer-brand):hover, .footer-bottom a:hover { background-size: 100% 1px; }
+.site-inner main p a, .site-inner .post-corpo a, .site-inner .legal-corpo a {
+  text-decoration-thickness: 1px;
+  transition: text-decoration-thickness .2s, color .2s;
+}
+.site-inner main p a:hover, .site-inner .post-corpo a:hover, .site-inner .legal-corpo a:hover { text-decoration-thickness: 2px; color: var(--ink); }
+
+/* Entrada ao rolar: deslocamento curto, sem desfoque. O conteúdo só é
+   ocultado depois que o script marca o elemento, nunca antes. */
+.fx .rv {
+  opacity: 0;
+  translate: 0 14px;
+  transition: opacity .6s ease, translate .8s var(--ease);
+  transition-delay: var(--rv-d, 0ms);
+}
+.fx .rv.is-in { opacity: 1; translate: none; }
+
+@keyframes sobe { from { opacity: 0; translate: 0 16px; } }
+@keyframes surge { from { opacity: 0; } }
+
+/* Páginas internas: abertura do cabeçalho de página. */
+.fx .site-inner :is(.hero-pagina, .service-hero, .cart-hero) h1 { animation: sobe .8s var(--ease) both; }
+.fx .site-inner :is(.hero-pagina, .service-hero, .cart-hero) :is(.sub, .service-hero-note, .botao, .btn) { animation: sobe .8s var(--ease) .12s both; }
+.fx .site-inner :is(.service-mockup, .foundry-mockup) { animation: sobe 1s var(--ease) .2s both; }
+.site-inner :is(.service-mockup, .foundry-mockup) { box-shadow: 0 1px 2px #20251f0a, 0 22px 50px -24px #20251f38; }
+
+/* Linhas técnicas (problemas, entregas, escopo, etapas, prazos, posts):
+   a linha responde ao ponteiro com um fundo que se abre e o número ganha a cor da marca. */
+.site-inner :is(.problem-item, .delivery-row, .scope-row, .passo, .item-numerado, .prazo-linha, .mapa-linha, .post-item):not(.cabeca, .card-destacado) {
+  transition: background-color .35s, box-shadow .35s, opacity .6s ease var(--rv-d, 0ms), translate .8s var(--ease) var(--rv-d, 0ms);
+}
+@media (hover: hover) {
+  .site-inner :is(.problem-item, .delivery-row, .scope-row, .passo, .item-numerado, .prazo-linha, .mapa-linha, .post-item):not(.cabeca, .card-destacado):hover {
+    background-color: var(--tinta-faixa);
+    box-shadow: -14px 0 0 var(--tinta-faixa), 14px 0 0 var(--tinta-faixa);
+  }
+  .site-inner .secao-alt :is(.problem-item, .delivery-row, .scope-row, .passo, .item-numerado, .prazo-linha, .mapa-linha, .post-item):not(.cabeca, .card-destacado):hover {
+    background-color: #e6ecdc;
+    box-shadow: -14px 0 0 #e6ecdc, 14px 0 0 #e6ecdc;
+  }
+}
+.site-inner :is(.problem-item, .delivery-row, .passo, .item-numerado) .num { transition: color .3s; font-variant-numeric: tabular-nums; }
+.site-inner :is(.problem-item, .delivery-row, .passo, .item-numerado):hover .num { color: var(--accent); }
+
+/* Navegação da página de serviço acompanha a leitura. */
+.site-inner .service-nav a { transition: color .25s, box-shadow .3s; }
+.site-inner .service-nav a[aria-current="true"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
+
+/* Perguntas frequentes: abre com altura animada onde o navegador permite. */
+@supports selector(::details-content) {
+  .fx .faq details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size .4s var(--ease), content-visibility .4s allow-discrete;
+  }
+  .fx .faq details[open]::details-content { block-size: auto; }
+}
+
+/* Campos: o foco é marcado pela borda, sem brilho. */
+.site-inner :is(input, select, textarea) { transition: border-color .2s, box-shadow .2s; }
+
+/* Comparativo da página de IA: os rótulos da primeira coluna sumiam abaixo de 920px. */
+@media (max-width: 920px) {
+  .site-inner .comp-linha:not(.cabeca) > :first-child { display: block; grid-column: 1 / -1; font-weight: 600; }
+}
+
+/* Rodapé: hora local e controle dos efeitos. */
+.footer-main > div > a:not(.footer-brand) { width: fit-content; max-width: 100%; }
+@media (max-width: 700px) { .footer-bottom { padding-bottom: 64px; } }
+.footer-hora { display: block; margin-top: 6px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.efeitos-toggle {
+  border: 0;
+  background: none;
+  padding: 6px 0;
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--linha-forte);
+}
+.efeitos-toggle:hover { color: var(--ink); }
+.efeitos-toggle:disabled { cursor: default; text-decoration: none; }
+
+/* Voltar ao início */
+.topo {
+  position: fixed;
+  right: 20px; bottom: 20px;
+  z-index: var(--z-controls, 50);
+  display: grid;
+  place-items: center;
+  width: 44px; height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 6px 20px -10px #20251f55;
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 10px;
+  transition: opacity .3s, translate .4s var(--ease), visibility .3s, background .25s, color .25s;
+}
+.topo.is-on { opacity: 1; visibility: visible; translate: none; }
+.topo:hover { background: var(--ink); color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+}
+html:not(.fx) { scroll-behavior: auto; }
+
+/* Impressão: nada fica à espera da rolagem. */
+@media print {
+  .fx .rv { opacity: 1 !important; translate: none !important; }
+  .header { position: static; }
+  .topo, .efeitos-toggle { display: none; }
+}
